@@ -1,6 +1,7 @@
 package se.iths.grocerylistgenerator.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -16,14 +17,27 @@ public class User {
     @ManyToOne
     private Role role;
 
-    @ManyToMany
-    private Set<Ingredient> groceries;
+    @ManyToMany()
 
-    @ManyToMany
-    private Set<Recipe> recipes;
+    private Set<Ingredient> groceries = new HashSet<>();
+
+    @ManyToMany()
+    private Set<Recipe> recipes = new HashSet<>();
 
     @ManyToOne
     private Store favouriteStore;
+
+    public User(String username, String password, Role role, Set<Ingredient> groceries, Set<Recipe> recipes, Store favouriteStore) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.groceries = groceries;
+        this.recipes = recipes;
+        this.favouriteStore = favouriteStore;
+    }
+
+    public User() {
+    }
 
     public Long getId() {
         return id;
