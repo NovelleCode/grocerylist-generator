@@ -2,6 +2,7 @@ package se.iths.grocerylistgenerator.model;
 
 import javax.persistence.*;
 
+@Entity
 public class StoreContactInfo {
 
     @Id
@@ -10,15 +11,6 @@ public class StoreContactInfo {
 
     private String address;
     private String phoneNumber;
-/*
-    @OneToOne(mappedBy = "storeContactInfo", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
-    Store store;
-
- */
-
-    @OneToOne(mappedBy = "store_id")
-    Store store;
 
     public StoreContactInfo(String address, String phoneNumber) {
         this.address = address;
@@ -50,13 +42,5 @@ public class StoreContactInfo {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Store getStore() {
-        return store;
-    }
-
-    public void setStore(Store store) {
-        this.store = store;
     }
 }
