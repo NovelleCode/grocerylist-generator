@@ -1,2 +1,4 @@
-package se.iths.grocerylistgenerator.controller;public class StoreController {
+package se.iths.grocerylistgenerator.controller;
+
+public class StoreController {
 }
