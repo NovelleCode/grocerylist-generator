@@ -9,7 +9,8 @@ import se.iths.grocerylistgenerator.service.IngredientService;
 import java.util.List;
 import java.util.Optional;
 
-@RestController("ingredients")
+@RestController()
+@RequestMapping("ingredients")
 public class IngredientController {
 
     private final IngredientService ingredientService;
