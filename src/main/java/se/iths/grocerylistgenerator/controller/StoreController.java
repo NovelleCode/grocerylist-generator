@@ -18,6 +18,7 @@ public class StoreController {
     public StoreController(StoreService storeService) {
         this.storeService = storeService;
     }
+
     @PostMapping()
     public ResponseEntity<Store> createStore(@RequestBody Store store){
         Store createdStore = storeService.createStore(store);
@@ -33,7 +34,7 @@ public class StoreController {
     @GetMapping()
     public ResponseEntity<Iterable<Store>> findAllStores(){
         Iterable<Store> allStores = storeService.findAllStores();
-        return new ResponseEntity<>(allStores, HttpStatus.OK)
+        return new ResponseEntity<>(allStores, HttpStatus.OK);
     }
 
 
