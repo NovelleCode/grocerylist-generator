@@ -12,12 +12,17 @@ public class Recipe {
 
     private String name;
 
-    @ManyToMany
-    private Set<Ingredient> ingredients;
+//    @ManyToMany
+//    private Set<Ingredient> ingredients;
 
-    public Recipe(String name, Set<Ingredient> ingredients) {
+//    public Recipe(String name, Set<Ingredient> ingredients) {
+//        this.name = name;
+////        this.ingredients = ingredients;
+//    }
+
+
+    public Recipe(String name) {
         this.name = name;
-        this.ingredients = ingredients;
     }
 
     public Recipe() {
@@ -39,11 +44,11 @@ public class Recipe {
         this.name = name;
     }
 
-    public Set<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Set<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
+//    public Set<Ingredient> getIngredients() {
+//        return ingredients;
+//    }
+//
+//    public void setIngredients(Set<Ingredient> ingredients) {
+//        this.ingredients = ingredients;
+//    }
 }
