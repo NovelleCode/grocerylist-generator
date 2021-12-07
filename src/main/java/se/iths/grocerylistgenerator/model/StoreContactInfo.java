@@ -3,10 +3,12 @@ package se.iths.grocerylistgenerator.model;
 import javax.persistence.*;
 
 @Entity
+//@Table(name="storeinfo")
 public class StoreContactInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+//    @Column(name = "storeinfo_id")
     private Long id;
 
     private String address;
