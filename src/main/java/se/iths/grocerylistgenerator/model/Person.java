@@ -16,8 +16,8 @@ public class Person {
     private String username;
     private String password;
 
-    @ManyToOne
-    private Role role;
+//    @ManyToOne
+//    private Role role;
 
 //    @ManyToMany()
 //    private Set<Ingredient> groceries = new HashSet<>();
@@ -71,35 +71,35 @@ public class Person {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
-    }
+//    public Role getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(Role role) {
+//        this.role = role;
+//    }
+//
+//    public Set<Ingredient> getGroceries() {
+//        return groceries;
+//    }
+//
+//    public void setGroceries(Set<Ingredient> groceries) {
+//        this.groceries = groceries;
+//    }
+//
+//    public Set<Recipe> getRecipes() {
+//        return recipes;
+//    }
+//
+//    public void setRecipes(Set<Recipe> recipes) {
+//        this.recipes = recipes;
+//    }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+//    public Store getFavouriteStore() {
+//        return favouriteStore;
+//    }
 //
-////    public Set<Ingredient> getGroceries() {
-////        return groceries;
-////    }
-////
-////    public void setGroceries(Set<Ingredient> groceries) {
-////        this.groceries = groceries;
-////    }
-////
-////    public Set<Recipe> getRecipes() {
-////        return recipes;
-////    }
-////
-////    public void setRecipes(Set<Recipe> recipes) {
-////        this.recipes = recipes;
-////    }
-//
-////    public Store getFavouriteStore() {
-////        return favouriteStore;
-////    }
-////
-////    public void setFavouriteStore(Store favouriteStore) {
-////        this.favouriteStore = favouriteStore;
-////    }
+//    public void setFavouriteStore(Store favouriteStore) {
+//        this.favouriteStore = favouriteStore;
+//    }
 }
