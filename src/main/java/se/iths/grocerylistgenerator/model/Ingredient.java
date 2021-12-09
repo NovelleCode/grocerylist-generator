@@ -18,7 +18,7 @@ public class Ingredient {
 //    public Ingredient(String name, String quantity, Category category) {
 //        this.name = name;
 //        this.quantity = quantity;
-////        this.category = category;
+//        this.category = category;
 //    }
 
 

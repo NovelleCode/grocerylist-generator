@@ -11,15 +11,14 @@ public class Store {
 
     private String name;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "storeinfo_id")
-//    private StoreContactInfo storeContactInfo;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "store_storeinfo_id")
+    private StoreContactInfo storeContactInfo;
 
-//    public Store(String name, StoreContactInfo storeContactInfo) {
-//        this.name = name;
-//        this.storeContactInfo = storeContactInfo;
-//    }
-
+    public Store(String name, StoreContactInfo storeContactInfo) {
+        this.name = name;
+        this.storeContactInfo = storeContactInfo;
+    }
 
     public Store(String name) {
         this.name = name;
@@ -44,11 +43,11 @@ public class Store {
         this.name = name;
     }
 
-//    public StoreContactInfo getStoreContactInfo() {
-//        return storeContactInfo;
-//    }
-//
-//    public void setStoreContactInfo(StoreContactInfo storeContactInfo) {
-//        this.storeContactInfo = storeContactInfo;
-//    }
+    public StoreContactInfo getStoreContactInfo() {
+        return storeContactInfo;
+    }
+
+    public void setStoreContactInfo(StoreContactInfo storeContactInfo) {
+        this.storeContactInfo = storeContactInfo;
+    }
 }
