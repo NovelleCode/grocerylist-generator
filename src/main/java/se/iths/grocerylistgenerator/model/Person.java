@@ -1,7 +1,5 @@
 package se.iths.grocerylistgenerator.model;
 
-import org.apache.catalina.Store;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,8 +12,9 @@ public class Person {
     private String username;
     private String password;
 
-//    @ManyToOne
-//    private Role role;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 //    @ManyToMany()
 //    private Set<Ingredient> groceries = new HashSet<>();
@@ -23,8 +22,9 @@ public class Person {
 //    @ManyToMany()
 //    private Set<Recipe> recipes = new HashSet<>();
 //
-//    @ManyToOne
-//    private Store favouriteStore;
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store favouriteStore;
 //
 //    public User(String username, String password, Role role, Set<Ingredient> groceries, Set<Recipe> recipes, Store favouriteStore) {
 //        this.username = username;
@@ -69,13 +69,13 @@ public class Person {
         this.password = password;
     }
 
-//    public Role getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(Role role) {
-//        this.role = role;
-//    }
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 //
 //    public Set<Ingredient> getGroceries() {
 //        return groceries;
@@ -93,11 +93,11 @@ public class Person {
 //        this.recipes = recipes;
 //    }
 
-//    public Store getFavouriteStore() {
-//        return favouriteStore;
-//    }
-//
-//    public void setFavouriteStore(Store favouriteStore) {
-//        this.favouriteStore = favouriteStore;
-//    }
+    public Store getFavouriteStore() {
+        return favouriteStore;
+    }
+
+    public void setFavouriteStore(Store favouriteStore) {
+        this.favouriteStore = favouriteStore;
+    }
 }
