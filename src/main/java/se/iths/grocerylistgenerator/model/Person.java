@@ -1,7 +1,5 @@
 package se.iths.grocerylistgenerator.model;
 
-import org.apache.catalina.Store;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,32 +14,40 @@ public class Person {
     private String username;
     private String password;
 
-//    @ManyToOne
-//    private Role role;
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
-//    @ManyToMany()
-//    private Set<Ingredient> groceries = new HashSet<>();
-//
-//    @ManyToMany()
-//    private Set<Recipe> recipes = new HashSet<>();
-//
-//    @ManyToOne
-//    private Store favouriteStore;
-//
-//    public User(String username, String password, Role role, Set<Ingredient> groceries, Set<Recipe> recipes, Store favouriteStore) {
-//        this.username = username;
-//        this.password = password;
-//        this.role = role;
-//        this.groceries = groceries;
-//        this.recipes = recipes;
-//        this.favouriteStore = favouriteStore;
-//    }
-//
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "person_ingredients",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Set<Ingredient> groceries = new HashSet<>();
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "person_recipe",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+    private Set<Recipe> recipes = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store favouriteStore;
 
 
-    public Person(String username, String password) {
+    public Person(String username, String password, Role role, Store favouriteStore) {
         this.username = username;
         this.password = password;
+        this.role = role;
+        this.favouriteStore = favouriteStore;
+    }
+
+    public Person(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public Person() {
@@ -71,35 +77,35 @@ public class Person {
         this.password = password;
     }
 
-//    public Role getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(Role role) {
-//        this.role = role;
-//    }
-//
-//    public Set<Ingredient> getGroceries() {
-//        return groceries;
-//    }
-//
-//    public void setGroceries(Set<Ingredient> groceries) {
-//        this.groceries = groceries;
-//    }
-//
-//    public Set<Recipe> getRecipes() {
-//        return recipes;
-//    }
-//
-//    public void setRecipes(Set<Recipe> recipes) {
-//        this.recipes = recipes;
-//    }
+    public Role getRole() {
+        return role;
+    }
 
-//    public Store getFavouriteStore() {
-//        return favouriteStore;
-//    }
-//
-//    public void setFavouriteStore(Store favouriteStore) {
-//        this.favouriteStore = favouriteStore;
-//    }
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Set<Ingredient> getGroceries() {
+        return groceries;
+    }
+
+    public void setGroceries(Set<Ingredient> groceries) {
+        this.groceries = groceries;
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Store getFavouriteStore() {
+        return favouriteStore;
+    }
+
+    public void setFavouriteStore(Store favouriteStore) {
+        this.favouriteStore = favouriteStore;
+    }
 }
