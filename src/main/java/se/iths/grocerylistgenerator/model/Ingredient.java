@@ -15,12 +15,11 @@ public class Ingredient {
 //    @ManyToOne
 //    private Category category;
 
-//    public Ingredient(String name, String quantity, Category category) {
-//        this.name = name;
-//        this.quantity = quantity;
-//        this.category = category;
-//    }
-
+    public Ingredient(String name, String quantity, Category category) {
+        this.name = name;
+        this.quantity = quantity;
+        this.category = category;
+    }
 
     public Ingredient(String name, String quantity) {
         this.name = name;
