@@ -12,8 +12,9 @@ public class Ingredient {
     private String name;
     private String quantity;
 
-//    @ManyToOne
-//    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public Ingredient(String name, String quantity, Category category) {
         this.name = name;
@@ -53,11 +54,11 @@ public class Ingredient {
         this.quantity = quantity;
     }
 
-//    public Category getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Category category) {
-//        this.category = category;
-//    }
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }

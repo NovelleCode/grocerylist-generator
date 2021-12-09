@@ -18,30 +18,36 @@ public class Person {
     @JoinColumn(name = "role_id")
     private Role role;
 
-//    @ManyToMany()
-//    private Set<Ingredient> groceries = new HashSet<>();
-//
-//    @ManyToMany()
-//    private Set<Recipe> recipes = new HashSet<>();
-//
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "person_ingredients",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Set<Ingredient> groceries = new HashSet<>();
+
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "person_recipe",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "recipe_id"))
+    private Set<Recipe> recipes = new HashSet<>();
+
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store favouriteStore;
-//
-//    public User(String username, String password, Role role, Set<Ingredient> groceries, Set<Recipe> recipes, Store favouriteStore) {
-//        this.username = username;
-//        this.password = password;
-//        this.role = role;
-//        this.groceries = groceries;
-//        this.recipes = recipes;
-//        this.favouriteStore = favouriteStore;
-//    }
-//
 
 
-    public Person(String username, String password) {
+    public Person(String username, String password, Role role, Store favouriteStore) {
         this.username = username;
         this.password = password;
+        this.role = role;
+        this.favouriteStore = favouriteStore;
+    }
+
+    public Person(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public Person() {
@@ -78,15 +84,15 @@ public class Person {
     public void setRole(Role role) {
         this.role = role;
     }
-//
-//    public Set<Ingredient> getGroceries() {
-//        return groceries;
-//    }
-//
-//    public void setGroceries(Set<Ingredient> groceries) {
-//        this.groceries = groceries;
-//    }
-//
+
+    public Set<Ingredient> getGroceries() {
+        return groceries;
+    }
+
+    public void setGroceries(Set<Ingredient> groceries) {
+        this.groceries = groceries;
+    }
+
     public Set<Recipe> getRecipes() {
         return recipes;
     }

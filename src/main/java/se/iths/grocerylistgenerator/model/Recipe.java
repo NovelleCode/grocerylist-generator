@@ -13,8 +13,12 @@ public class Recipe {
 
     private String name;
 
-//    @ManyToMany
-//    private Set<Ingredient> ingredients;
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "recipe_ingredient",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    private Set<Ingredient> ingredients = new HashSet<>();
 
     public Recipe(String name, Set<Ingredient> ingredients) {
         this.name = name;
