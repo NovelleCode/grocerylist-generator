@@ -3,8 +3,6 @@ package se.iths.grocerylistgenerator.model;
 import org.apache.catalina.Store;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Person {
