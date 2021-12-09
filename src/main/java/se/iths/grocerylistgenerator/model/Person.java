@@ -1,6 +1,8 @@
 package se.iths.grocerylistgenerator.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Person {
@@ -85,13 +87,13 @@ public class Person {
 //        this.groceries = groceries;
 //    }
 //
-//    public Set<Recipe> getRecipes() {
-//        return recipes;
-//    }
-//
-//    public void setRecipes(Set<Recipe> recipes) {
-//        this.recipes = recipes;
-//    }
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
 
     public Store getFavouriteStore() {
         return favouriteStore;
