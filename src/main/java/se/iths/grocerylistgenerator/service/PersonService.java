@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.model.Person;
 import se.iths.grocerylistgenerator.model.Recipe;
+import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
 import java.util.List;
@@ -15,11 +16,13 @@ public class PersonService {
     private final PersonRepository personRepository;
     private final RecipeService recipeService;
     private final IngredientService ingredientService;
+    private final StoreService storeService;
 
-    public PersonService(PersonRepository personRepository, RecipeService recipeService, IngredientService ingredientService) {
+    public PersonService(PersonRepository personRepository, RecipeService recipeService, IngredientService ingredientService, StoreService storeService) {
         this.personRepository = personRepository;
         this.recipeService = recipeService;
         this.ingredientService = ingredientService;
+        this.storeService = storeService;
     }
 
     public Person createPerson(Person person) {
@@ -48,6 +51,14 @@ public class PersonService {
         Person person = findPersonById(personId).get();
         Ingredient ingredient = ingredientService.getIngredientById(ingredientId);
         person.addIngredientGroceries(ingredient);
+        personRepository.save(person);
+        return person;
+    }
+
+    public Person addFavouriteStore(Long personId, Long storeId) {
+        Person person = findPersonById(personId).get();
+        Store store = storeService.findStoreById(storeId).get();
+        person.setFavouriteStore(store);
         personRepository.save(person);
         return person;
     }

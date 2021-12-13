@@ -48,4 +48,11 @@ public class PersonController {
         Person person = personService.addIngredientToGroceryList(personId, ingredientId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
+
+    @PostMapping("{personId}/stores/{storeId}")
+    public ResponseEntity<Person> addFavouriteStore(@PathVariable Long personId, @PathVariable Long storeId) {
+        Person person = personService.addFavouriteStore(personId, storeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
 }
