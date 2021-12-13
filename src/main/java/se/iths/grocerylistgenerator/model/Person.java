@@ -53,6 +53,22 @@ public class Person {
     public Person() {
     }
 
+    public void addIngredientToGroceryList(Ingredient ingredient) {
+        groceries.add(ingredient);
+    }
+
+    public void removeIngredientFromGroceryList(Ingredient ingredient) {
+        groceries.remove(ingredient);
+    }
+
+    public void addRecipeToRecipeList(Recipe recipe) {
+        recipes.add(recipe);
+    }
+
+    public void removeRecipeFromRecipeList(Recipe recipe) {
+        recipes.remove(recipe);
+    }
+
     public Long getId() {
         return id;
     }

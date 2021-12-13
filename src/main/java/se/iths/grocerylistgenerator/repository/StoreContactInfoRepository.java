@@ -6,5 +6,4 @@ import se.iths.grocerylistgenerator.model.StoreContactInfo;
 
 @Repository
 public interface StoreContactInfoRepository extends CrudRepository<StoreContactInfo, Long> {
-    StoreContactInfo findByName (String name);
 }
