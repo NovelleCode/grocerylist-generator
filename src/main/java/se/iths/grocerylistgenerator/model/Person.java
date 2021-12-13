@@ -53,6 +53,10 @@ public class Person {
     public Person() {
     }
 
+    public void addIngredientGroceries(Ingredient ingredient) {
+        groceries.add(ingredient);
+    }
+
     public Long getId() {
         return id;
     }

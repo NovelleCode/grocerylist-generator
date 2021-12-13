@@ -13,9 +13,13 @@ import java.util.Optional;
 public class PersonService {
 
     private final PersonRepository personRepository;
+    private final RecipeService recipeService;
+    private final IngredientService ingredientService;
 
-    public PersonService(PersonRepository personRepository) {
+    public PersonService(PersonRepository personRepository, RecipeService recipeService, IngredientService ingredientService) {
         this.personRepository = personRepository;
+        this.recipeService = recipeService;
+        this.ingredientService = ingredientService;
     }
 
     public Person createPerson(Person person) {
