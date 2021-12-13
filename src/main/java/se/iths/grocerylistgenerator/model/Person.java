@@ -57,6 +57,10 @@ public class Person {
         groceries.add(ingredient);
     }
 
+    public void removeIngredientFromGroceryList(Ingredient ingredient) {
+        groceries.remove(ingredient);
+    }
+
     public void addRecipeToRecipesList(Recipe recipe) {
         recipes.add(recipe);
     }

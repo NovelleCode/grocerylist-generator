@@ -70,4 +70,12 @@ public class PersonService {
         personRepository.save(person);
         return person;
     }
+
+    public Person removeIngredientFromGroceryList(Long personId, Long ingredientId) {
+        Person person = findPersonById(personId).get();
+        Ingredient ingredient = ingredientService.getIngredientById(ingredientId);
+        person.removeIngredientFromGroceryList(ingredient);
+        personRepository.save(person);
+        return person;
+    }
 }
