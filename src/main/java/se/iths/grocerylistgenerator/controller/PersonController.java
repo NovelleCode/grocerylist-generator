@@ -37,5 +37,15 @@ public class PersonController {
         return new ResponseEntity<>(foundPerson, HttpStatus.OK);
     }
 
+    @PostMapping("{personId}/recipes/{recipeId}")
+    public ResponseEntity<Person> addRecipeIngredientsToGroceryList(@PathVariable Long personId, @PathVariable Long recipeId) {
+        Person person = personService.addRecipeIngredientsToGroceryList(personId, recipeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
 
+    @PostMapping("{personId}/ingredients/{ingredientId}")
+    public ResponseEntity<Person> addIngredientToGroceryList(@PathVariable Long personId, @PathVariable Long ingredientId) {
+        Person person = personService.addIngredientToGroceryList(personId, ingredientId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
 }
