@@ -66,7 +66,7 @@ public class PersonService {
     public Person addRecipeToRecipeList(Long personId, Long recipeId) {
         Person person = findPersonById(personId).get();
         Recipe recipe = recipeService.findRecipeById(recipeId).get();
-        person.addRecipeToRecipesList(recipe);
+        person.addRecipeToRecipeList(recipe);
         personRepository.save(person);
         return person;
     }
@@ -75,6 +75,14 @@ public class PersonService {
         Person person = findPersonById(personId).get();
         Ingredient ingredient = ingredientService.getIngredientById(ingredientId);
         person.removeIngredientFromGroceryList(ingredient);
+        personRepository.save(person);
+        return person;
+    }
+
+    public Person removeRecipeFromRecipeList(Long personId, Long recipeId) {
+        Person person = findPersonById(personId).get();
+        Recipe recipe = recipeService.findRecipeById(recipeId).get();
+        person.removeRecipeFromRecipeList(recipe);
         personRepository.save(person);
         return person;
     }

@@ -66,4 +66,10 @@ public class PersonController {
         Person person = personService.removeIngredientFromGroceryList(personId, ingredientId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
+
+    @DeleteMapping("{personId}/recipes/{recipeId}")
+    public ResponseEntity<Person> removeRecipeFromRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
+        Person person = personService.removeRecipeFromRecipeList(personId, recipeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
 }

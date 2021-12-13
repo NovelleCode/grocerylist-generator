@@ -61,8 +61,12 @@ public class Person {
         groceries.remove(ingredient);
     }
 
-    public void addRecipeToRecipesList(Recipe recipe) {
+    public void addRecipeToRecipeList(Recipe recipe) {
         recipes.add(recipe);
+    }
+
+    public void removeRecipeFromRecipeList(Recipe recipe) {
+        recipes.remove(recipe);
     }
 
     public Long getId() {
