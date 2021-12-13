@@ -42,7 +42,7 @@ public class PersonService {
     public Person addRecipeIngredientsToGroceryList(Long personId, Long recipeId) {
         Person person = findPersonById(personId).get();
         Optional<Recipe> recipe = recipeService.findRecipeById(recipeId);
-        recipe.get().getIngredients().forEach(person::addIngredientGroceries);
+        recipe.get().getIngredients().forEach(person::addIngredientToGroceryList);
         personRepository.save(person);
         return person;
     }
@@ -50,7 +50,7 @@ public class PersonService {
     public Person addIngredientToGroceryList(Long personId, Long ingredientId) {
         Person person = findPersonById(personId).get();
         Ingredient ingredient = ingredientService.getIngredientById(ingredientId);
-        person.addIngredientGroceries(ingredient);
+        person.addIngredientToGroceryList(ingredient);
         personRepository.save(person);
         return person;
     }
@@ -59,6 +59,14 @@ public class PersonService {
         Person person = findPersonById(personId).get();
         Store store = storeService.findStoreById(storeId).get();
         person.setFavouriteStore(store);
+        personRepository.save(person);
+        return person;
+    }
+
+    public Person addRecipeToRecipeList(Long personId, Long recipeId) {
+        Person person = findPersonById(personId).get();
+        Recipe recipe = recipeService.findRecipeById(recipeId).get();
+        person.addRecipeToRecipesList(recipe);
         personRepository.save(person);
         return person;
     }

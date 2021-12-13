@@ -53,8 +53,12 @@ public class Person {
     public Person() {
     }
 
-    public void addIngredientGroceries(Ingredient ingredient) {
+    public void addIngredientToGroceryList(Ingredient ingredient) {
         groceries.add(ingredient);
+    }
+
+    public void addRecipeToRecipesList(Recipe recipe) {
+        recipes.add(recipe);
     }
 
     public Long getId() {
