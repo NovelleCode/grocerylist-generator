@@ -16,8 +16,7 @@ public class IngredientService {
     }
 
     public Ingredient createIngredient(Ingredient ingredient) {
-        // TODO: add ingredient.getCategory == null down here once relations are fixed
-        if (ingredient.getName().isEmpty() || ingredient.getQuantity().isEmpty())
+        if (ingredient.getName().isEmpty() || ingredient.getCategory() == null)
             throw new RuntimeException("Incomplete ingredient");
         return ingredientRepository.save(ingredient);
     }

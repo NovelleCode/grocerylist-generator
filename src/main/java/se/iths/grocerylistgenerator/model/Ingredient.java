@@ -10,21 +10,18 @@ public class Ingredient {
     private Long id;
 
     private String name;
-    private String quantity;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Ingredient(String name, String quantity, Category category) {
+    public Ingredient(String name, Category category) {
         this.name = name;
-        this.quantity = quantity;
         this.category = category;
     }
 
-    public Ingredient(String name, String quantity) {
+    public Ingredient(String name) {
         this.name = name;
-        this.quantity = quantity;
     }
 
     public Ingredient() {
@@ -44,14 +41,6 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
     }
 
     public Category getCategory() {

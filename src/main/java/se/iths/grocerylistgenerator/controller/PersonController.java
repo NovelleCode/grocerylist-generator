@@ -37,5 +37,39 @@ public class PersonController {
         return new ResponseEntity<>(foundPerson, HttpStatus.OK);
     }
 
+    @PostMapping("{personId}/grocerylist/recipes/{recipeId}")
+    public ResponseEntity<Person> addRecipeIngredientsToGroceryList(@PathVariable Long personId, @PathVariable Long recipeId) {
+        Person person = personService.addRecipeIngredientsToGroceryList(personId, recipeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
 
+    @PostMapping("{personId}/grocerylist/ingredients/{ingredientId}")
+    public ResponseEntity<Person> addIngredientToGroceryList(@PathVariable Long personId, @PathVariable Long ingredientId) {
+        Person person = personService.addIngredientToGroceryList(personId, ingredientId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
+    @PostMapping("{personId}/recipes/{recipeId}")
+    public ResponseEntity<Person> addRecipeToRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
+        Person person = personService.addRecipeToRecipeList(personId, recipeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
+    @PostMapping("{personId}/stores/{storeId}")
+    public ResponseEntity<Person> addFavouriteStore(@PathVariable Long personId, @PathVariable Long storeId) {
+        Person person = personService.addFavouriteStore(personId, storeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
+    @DeleteMapping("{personId}/grocerylist/ingredients/{ingredientId}")
+    public ResponseEntity<Person> removeIngredientFromGroceryList(@PathVariable Long personId, @PathVariable Long ingredientId) {
+        Person person = personService.removeIngredientFromGroceryList(personId, ingredientId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
+    @DeleteMapping("{personId}/recipes/{recipeId}")
+    public ResponseEntity<Person> removeRecipeFromRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
+        Person person = personService.removeRecipeFromRecipeList(personId, recipeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
 }
