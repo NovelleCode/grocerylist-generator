@@ -1,5 +1,6 @@
 package se.iths.grocerylistgenerator.mapper;
 
+import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.RecipeDto;
 import se.iths.grocerylistgenerator.model.Recipe;
 
@@ -7,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class RecipeMapper {
 
     public RecipeMapper() {
