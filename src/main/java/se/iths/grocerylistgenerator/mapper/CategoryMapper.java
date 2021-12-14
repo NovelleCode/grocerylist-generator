@@ -25,8 +25,8 @@ public class CategoryMapper {
         return new CategoryDto(category.getId(), category.getName());
     }
 
-    public List<CategoryDto> mapp(List<Category> all) {
-        return all
+    public List<CategoryDto> mapp(List<Category> categories) {
+        return categories
                 .stream()
                 .map(this::mapp)
                 .collect(Collectors.toList());

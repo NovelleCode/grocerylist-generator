@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.dto.CategoryDto;
-import se.iths.grocerylistgenerator.model.Category;
 import se.iths.grocerylistgenerator.service.CategoryService;
 
 import java.util.List;
