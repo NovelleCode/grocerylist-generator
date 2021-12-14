@@ -3,7 +3,6 @@ package se.iths.grocerylistgenerator.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.service.RecipeService;
 
@@ -40,8 +39,6 @@ public class RecipeController {
 
     @GetMapping("ingredients")
     public ResponseEntity<Iterable<Recipe>> findRecipesByIngredients(@RequestParam List<Long> ingredientIds){
-        //Skickar in lista med ingrediens id. Vi vill få tillbaka lista med recept som
-        // matchar/inehåller en viss ingrediens.
         Iterable<Recipe> foundRecipe=  recipeService.findRecipeByIngredient(ingredientIds);
         return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
     }
