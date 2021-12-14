@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.service.RecipeService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -33,6 +34,12 @@ public class RecipeController {
     @GetMapping("{id}")
     public ResponseEntity<Optional<Recipe>> findRecipeById(@PathVariable Long id){
         Optional<Recipe> foundRecipe = recipeService.findRecipeById(id);
+        return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
+    }
+
+    @GetMapping("ingredients")
+    public ResponseEntity<Iterable<Recipe>> findRecipesByIngredients(@RequestParam List<Long> ingredientIds){
+        Iterable<Recipe> foundRecipe=  recipeService.findRecipeByIngredient(ingredientIds);
         return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
     }
 
