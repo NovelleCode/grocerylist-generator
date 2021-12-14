@@ -6,6 +6,7 @@ import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.model.Person;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -27,5 +28,11 @@ public class PersonMapper {
                 .stream()
                 .map(this::mapp)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<PersonDto> mapp(Optional<Person> optionalPerson) {
+        if (optionalPerson.isEmpty())
+            return Optional.empty();
+        return Optional.of(mapp(optionalPerson.get()));
     }
 }
