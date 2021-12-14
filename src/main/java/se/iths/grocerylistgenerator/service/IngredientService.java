@@ -1,6 +1,8 @@
 package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.grocerylistgenerator.dto.IngredientDto;
+import se.iths.grocerylistgenerator.mapper.IngredientMapper;
 import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.repository.IngredientRepository;
 
@@ -10,22 +12,29 @@ import java.util.List;
 public class IngredientService {
 
     private final IngredientRepository ingredientRepository;
+    private final IngredientMapper ingredientMapper;
 
-    public IngredientService(IngredientRepository ingredientRepository) {
+    public IngredientService(IngredientRepository ingredientRepository, IngredientMapper ingredientMapper) {
         this.ingredientRepository = ingredientRepository;
+        this.ingredientMapper = ingredientMapper;
     }
 
-    public Ingredient createIngredient(Ingredient ingredient) {
-        if (ingredient.getName().isEmpty() || ingredient.getCategory() == null)
+    public IngredientDto createIngredient(IngredientDto ingredientDto) {
+        if (ingredientDto.getName().isEmpty() || ingredientDto.getCategory() == null)
             throw new RuntimeException("Incomplete ingredient");
-        return ingredientRepository.save(ingredient);
+        return ingredientMapper.mapp(ingredientRepository.save(ingredientMapper.mapp(ingredientDto)));
     }
 
-    public List<Ingredient> getAllIngredients() {
-        return ingredientRepository.findAll();
+    public List<IngredientDto> getAllIngredients() {
+        return ingredientMapper.mapp(ingredientRepository.findAll());
     }
 
-    public Ingredient getIngredientById(Long id) {
+    public IngredientDto getIngredientById(Long id) {
+        return ingredientMapper.mapp(findIngredientById(id));
+    }
+
+    //TODO: Kolla på denna metoden och ovan. PersonService använder find och vill ha Ingredient inte dto...
+    public Ingredient findIngredientById(Long id) {
         return ingredientRepository.findById(id).orElseThrow(() -> new RuntimeException("Ingredient with id " + id + "not found"));
     }
 }

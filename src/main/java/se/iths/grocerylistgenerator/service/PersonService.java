@@ -44,6 +44,7 @@ public class PersonService {
         return personMapper.mapp(findById(id));
     }
 
+    //TODO: Kolla över ligiken att ha på denna metoden och ovan metod.
     private Optional<Person> findById (Long id) {
         return personRepository.findById(id);
     }
@@ -57,7 +58,7 @@ public class PersonService {
 
     public PersonDto addIngredientToGroceryList(Long personId, Long ingredientId) {
         Person person = findById(personId).get();
-        Ingredient ingredient = ingredientService.getIngredientById(ingredientId);
+        Ingredient ingredient = ingredientService.findIngredientById(ingredientId);
         person.addIngredientToGroceryList(ingredient);
         return personMapper.mapp(personRepository.save(person));
     }
@@ -79,7 +80,7 @@ public class PersonService {
 
     public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {
         Person person = findById(personId).get();
-        Ingredient ingredient = ingredientService.getIngredientById(ingredientId);
+        Ingredient ingredient = ingredientService.findIngredientById(ingredientId);
         person.removeIngredientFromGroceryList(ingredient);
         return personMapper.mapp(personRepository.save(person));
     }
