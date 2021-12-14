@@ -3,6 +3,7 @@ package se.iths.grocerylistgenerator.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.model.Person;
 import se.iths.grocerylistgenerator.service.PersonService;
@@ -21,14 +22,14 @@ public class PersonController {
     }
 
     @PostMapping
-    public ResponseEntity<PersonDto> createPerson(@RequestBody PersonDto personDto){
-        PersonDto createdPerson = personService.createPerson(personDto);
+    public ResponseEntity<PersonDto> createPerson(@RequestBody AddPersonDto addPersonDto){
+        PersonDto createdPerson = personService.createPerson(addPersonDto);
         return new ResponseEntity<>(createdPerson, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Person>> findAllPersons(){
-        List<Person> allPersons = personService.findAllPersons();
+    public ResponseEntity<List<PersonDto>> findAllPersons(){
+        List<PersonDto> allPersons = personService.findAllPersons();
         return new ResponseEntity<>(allPersons, HttpStatus.OK);
     }
 

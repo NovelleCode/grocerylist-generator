@@ -1,6 +1,7 @@
 package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.mapper.PersonMapper;
 import se.iths.grocerylistgenerator.model.Ingredient;
@@ -29,13 +30,13 @@ public class PersonService {
         this.personMapper = personMapper;
     }
 
-    public PersonDto createPerson(PersonDto personDto) {
+    public PersonDto createPerson(AddPersonDto addPersonDto) {
         // TODO: Felhantering
-        return personMapper.mapp(personRepository.save(personMapper.mapp(personDto)));
+        return personMapper.mapp(personRepository.save(personMapper.mapp(addPersonDto)));
     }
 
-    public List<Person> findAllPersons() {
-        return personRepository.findAll();
+    public List<PersonDto> findAllPersons() {
+        return personMapper.mapp(personRepository.findAll());
     }
 
     public Optional<Person> findPersonById(Long id) {

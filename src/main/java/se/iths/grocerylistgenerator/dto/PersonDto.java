@@ -1,40 +1,25 @@
 package se.iths.grocerylistgenerator.dto;
 
+import se.iths.grocerylistgenerator.model.Ingredient;
+import se.iths.grocerylistgenerator.model.Recipe;
+import se.iths.grocerylistgenerator.model.Store;
+
+import java.util.Set;
+
 public class PersonDto {
 
     private Long id;
     private String username;
-    private String password;
+    private Set<Ingredient> groceries;
+    private Set<Recipe> recipes;
+    private Store favouriteStore;
 
-    //En dto för att skapa upp en ny person. SOm sedan -> security och password kryptering
-
-    //En dto För det som skall skickas ut som svar
-    // private Long id;
-    // private String username;
-    // grocerylist?
-    // recipelist?
-    // favourite store?
-
-    //samma för alla endpoints?
-    // - Skapat upp en ny användare
-    // - Hämta alla användare
-    // - Hämta en användare med id
-    // - Lägga till ingredienser på inhandlingslista efter recept (flera ingredienser)
-    // - Lägga till ingrediens på inhandlingslista (en ingrediens)
-    // - Ta bort ingrediens på inhandlingslista.
-    // - Lägga till favoritaffär
-    // - Ta bort favoritaffär
-
-
-    public PersonDto(Long id, String username, String password) {
+    public PersonDto(Long id, String username, Set<Ingredient> groceries, Set<Recipe> recipes, Store favouriteStore) {
         this.id = id;
         this.username = username;
-        this.password = password;
-    }
-
-    public PersonDto(Long id, String username) {
-        this.id = id;
-        this.username = username;
+        this.groceries = groceries;
+        this.recipes = recipes;
+        this.favouriteStore = favouriteStore;
     }
 
     public Long getId() {
@@ -53,11 +38,27 @@ public class PersonDto {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public Set<Ingredient> getGroceries() {
+        return groceries;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setGroceries(Set<Ingredient> groceries) {
+        this.groceries = groceries;
+    }
+
+    public Set<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
+    public Store getFavouriteStore() {
+        return favouriteStore;
+    }
+
+    public void setFavouriteStore(Store favouriteStore) {
+        this.favouriteStore = favouriteStore;
     }
 }
