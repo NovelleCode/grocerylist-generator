@@ -44,10 +44,9 @@ public class Person {
         this.favouriteStore = favouriteStore;
     }
 
-    public Person(String username, String password, Role role) {
+    public Person(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
     }
 
     public Person() {

@@ -1,6 +1,8 @@
 package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.grocerylistgenerator.dto.PersonDto;
+import se.iths.grocerylistgenerator.mapper.PersonMapper;
 import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.model.Person;
 import se.iths.grocerylistgenerator.model.Recipe;
@@ -17,17 +19,19 @@ public class PersonService {
     private final RecipeService recipeService;
     private final IngredientService ingredientService;
     private final StoreService storeService;
+    private final PersonMapper personMapper;
 
-    public PersonService(PersonRepository personRepository, RecipeService recipeService, IngredientService ingredientService, StoreService storeService) {
+    public PersonService(PersonRepository personRepository, RecipeService recipeService, IngredientService ingredientService, StoreService storeService, PersonMapper personMapper) {
         this.personRepository = personRepository;
         this.recipeService = recipeService;
         this.ingredientService = ingredientService;
         this.storeService = storeService;
+        this.personMapper = personMapper;
     }
 
-    public Person createPerson(Person person) {
+    public PersonDto createPerson(PersonDto personDto) {
         // TODO: Felhantering
-        return personRepository.save(person);
+        return personMapper.mapp(personRepository.save(personMapper.mapp(personDto)));
     }
 
     public List<Person> findAllPersons() {
