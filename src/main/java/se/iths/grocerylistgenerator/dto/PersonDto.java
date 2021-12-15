@@ -10,10 +10,10 @@ public class PersonDto {
     private Long id;
     private String username;
     private Set<IngredientDto> groceries;
-    private Set<Recipe> recipes;
+    private Set<RecipeDto> recipes;
     private Store favouriteStore;
 
-    public PersonDto(Long id, String username, Set<IngredientDto> groceries, Set<Recipe> recipes, Store favouriteStore) {
+    public PersonDto(Long id, String username, Set<IngredientDto> groceries, Set<RecipeDto> recipes, Store favouriteStore) {
         this.id = id;
         this.username = username;
         this.groceries = groceries;
@@ -45,11 +45,11 @@ public class PersonDto {
         this.groceries = groceries;
     }
 
-    public Set<Recipe> getRecipes() {
+    public Set<RecipeDto> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(Set<Recipe> recipes) {
+    public void setRecipes(Set<RecipeDto> recipes) {
         this.recipes = recipes;
     }
 

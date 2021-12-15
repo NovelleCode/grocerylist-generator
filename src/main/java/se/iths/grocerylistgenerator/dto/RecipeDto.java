@@ -8,9 +8,9 @@ public class RecipeDto {
 
     private Long id;
     private String name;
-    private Set<Ingredient> ingredients;
+    private Set<IngredientDto> ingredients;
 
-    public RecipeDto(Long id, String name, Set<Ingredient> ingredients) {
+    public RecipeDto(Long id, String name, Set<IngredientDto> ingredients) {
         this.id = id;
         this.name = name;
         this.ingredients = ingredients;
@@ -35,11 +35,11 @@ public class RecipeDto {
         this.name = name;
     }
 
-    public Set<Ingredient> getIngredients() {
+    public Set<IngredientDto> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
+    public void setIngredients(Set<IngredientDto> ingredients) {
         this.ingredients = ingredients;
     }
 }

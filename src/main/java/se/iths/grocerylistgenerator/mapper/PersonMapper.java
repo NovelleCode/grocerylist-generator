@@ -13,9 +13,11 @@ import java.util.stream.Collectors;
 public class PersonMapper {
 
     private final IngredientMapper ingredientMapper;
+    private final RecipeMapper recipeMapper;
 
-    public PersonMapper(IngredientMapper ingredientMapper) {
+    public PersonMapper(IngredientMapper ingredientMapper, RecipeMapper recipeMapper) {
         this.ingredientMapper = ingredientMapper;
+        this.recipeMapper = recipeMapper;
     }
 
     public Person mapp(AddPersonDto addPersonDto) {
@@ -23,7 +25,7 @@ public class PersonMapper {
     }
 
     public PersonDto mapp(Person person) {
-        return new PersonDto(person.getId(), person.getUsername(), ingredientMapper.mapp(person.getGroceries()), person.getRecipes(), person.getFavouriteStore());
+        return new PersonDto(person.getId(), person.getUsername(), ingredientMapper.mapp(person.getGroceries()), recipeMapper.mapp(person.getRecipes()), person.getFavouriteStore());
     }
 
     public List<PersonDto> mapp(List<Person> all) {

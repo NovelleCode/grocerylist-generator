@@ -37,6 +37,13 @@ public class IngredientMapper {
                 .collect(Collectors.toSet());
     }
 
+    public Set<Ingredient> mappToIngredientSet(Set<IngredientDto> ingredients) {
+        return ingredients
+                .stream()
+                .map(this::mapp)
+                .collect(Collectors.toSet());
+    }
+
     public Optional<IngredientDto> mapp(Optional<Ingredient> optionalIngredient) {
         if (optionalIngredient.isEmpty())
             return Optional.empty();
