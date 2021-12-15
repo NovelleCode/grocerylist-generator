@@ -14,10 +14,12 @@ public class PersonMapper {
 
     private final IngredientMapper ingredientMapper;
     private final RecipeMapper recipeMapper;
+    private final StoreMapper storeMapper;
 
-    public PersonMapper(IngredientMapper ingredientMapper, RecipeMapper recipeMapper) {
+    public PersonMapper(IngredientMapper ingredientMapper, RecipeMapper recipeMapper, StoreMapper storeMapper) {
         this.ingredientMapper = ingredientMapper;
         this.recipeMapper = recipeMapper;
+        this.storeMapper = storeMapper;
     }
 
     public Person mapp(AddPersonDto addPersonDto) {
@@ -25,7 +27,14 @@ public class PersonMapper {
     }
 
     public PersonDto mapp(Person person) {
-        return new PersonDto(person.getId(), person.getUsername(), ingredientMapper.mapp(person.getGroceries()), recipeMapper.mapp(person.getRecipes()), person.getFavouriteStore());
+        if(person.getFavouriteStore() == null){
+            return new PersonDto(person.getId(), person.getUsername(), ingredientMapper.mapp(person.getGroceries())
+                    , recipeMapper.mapp(person.getRecipes()));
+        } else {
+            return new PersonDto(person.getId(), person.getUsername(), ingredientMapper.mapp(person.getGroceries())
+                    , recipeMapper.mapp(person.getRecipes()), storeMapper.mapp(person.getFavouriteStore()));
+        }
+
     }
 
     public List<PersonDto> mapp(List<Person> all) {
