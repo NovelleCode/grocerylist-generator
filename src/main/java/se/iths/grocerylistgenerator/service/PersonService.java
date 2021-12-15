@@ -3,7 +3,6 @@ package se.iths.grocerylistgenerator.service;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.*;
 import se.iths.grocerylistgenerator.mapper.PersonMapper;
-import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
 import java.util.List;
@@ -60,14 +59,13 @@ public class PersonService {
         personDto.setFavouriteStore(storeDto);
         return personMapper.mapp(personRepository.save(personMapper.mapp(personDto)));
     }
-//
-//    public PersonDto addRecipeToRecipeList(Long personId, Long recipeId) {
-//        PersonDto personDto = findPersonById(personId).get();
-//        Recipe recipe = recipeService.findById(recipeId).get();
-//        person.addRecipeToRecipeList(recipe);
-//        personRepository.save(person);
-//        return personMapper.mapp(person);
-//    }
+
+    public PersonDto addRecipeToRecipeList(Long personId, Long recipeId) {
+        PersonDto personDto = findPersonById(personId).get();
+        RecipeDto recipeDto = recipeService.findRecipeById(recipeId).get();
+        personDto.addRecipeToRecipeList(recipeDto);
+        return personMapper.mapp(personRepository.save(personMapper.mapp(personDto)));
+    }
 //
 //    public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {
 //        PersonDto personDto = findPersonById(personId).get();

@@ -50,12 +50,12 @@ public class PersonController {
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-//    @PostMapping("{personId}/recipes/{recipeId}")
-//    public ResponseEntity<PersonDto> addRecipeToRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
-//        PersonDto person = personService.addRecipeToRecipeList(personId, recipeId);
-//        return new ResponseEntity<>(person, HttpStatus.OK);
-//    }
-//
+    @PostMapping("{personId}/recipes/{recipeId}")
+    public ResponseEntity<PersonDto> addRecipeToRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
+        PersonDto person = personService.addRecipeToRecipeList(personId, recipeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
     @PostMapping("{personId}/stores/{storeId}")
     public ResponseEntity<PersonDto> addFavouriteStore(@PathVariable Long personId, @PathVariable Long storeId) {
         PersonDto person = personService.addFavouriteStore(personId, storeId);

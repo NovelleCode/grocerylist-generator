@@ -1,9 +1,5 @@
 package se.iths.grocerylistgenerator.dto;
 
-import se.iths.grocerylistgenerator.model.Ingredient;
-import se.iths.grocerylistgenerator.model.Recipe;
-import se.iths.grocerylistgenerator.model.Store;
-
 import java.util.Set;
 
 public class PersonDto {
@@ -24,6 +20,18 @@ public class PersonDto {
 
     public void addIngredientToGroceryList(IngredientDto ingredientDto) {
         groceries.add(ingredientDto);
+    }
+
+    public void addRecipeToRecipeList(RecipeDto recipeDto) {
+        recipes.add(recipeDto);
+    }
+
+    public void removeIngredientFromGroceryList(IngredientDto ingredientDto) {
+        groceries.remove(ingredientDto);
+    }
+
+    public void removeRecipeFromRecipeList(RecipeDto recipeDto) {
+        recipes.remove(recipeDto);
     }
 
     public Long getId() {
