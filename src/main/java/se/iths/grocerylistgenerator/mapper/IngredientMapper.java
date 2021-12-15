@@ -1,13 +1,12 @@
 package se.iths.grocerylistgenerator.mapper;
 
 import org.springframework.stereotype.Service;
-import se.iths.grocerylistgenerator.dto.CategoryDto;
 import se.iths.grocerylistgenerator.dto.IngredientDto;
-import se.iths.grocerylistgenerator.model.Category;
 import se.iths.grocerylistgenerator.model.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +28,13 @@ public class IngredientMapper {
                 .stream()
                 .map(this::mapp)
                 .collect(Collectors.toList());
+    }
+
+    public Set<IngredientDto> mapp(Set<Ingredient> ingredients) {
+        return ingredients
+                .stream()
+                .map(this::mapp)
+                .collect(Collectors.toSet());
     }
 
     public Optional<IngredientDto> mapp(Optional<Ingredient> optionalIngredient) {

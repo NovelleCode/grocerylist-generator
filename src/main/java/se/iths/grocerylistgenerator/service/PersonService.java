@@ -53,7 +53,7 @@ public class PersonService {
         Person person = findById(personId).get();
         Recipe recipe = recipeService.findById(recipeId).get();
         recipe.getIngredients().forEach(person::addIngredientToGroceryList);
-        return personMapper.mapp(person);
+        return personMapper.mapp(personRepository.save(person));
     }
 
     public PersonDto addIngredientToGroceryList(Long personId, Long ingredientId) {
@@ -74,8 +74,7 @@ public class PersonService {
         Person person = findById(personId).get();
         Recipe recipe = recipeService.findById(recipeId).get();
         person.addRecipeToRecipeList(recipe);
-        personRepository.save(person);
-        return personMapper.mapp(person);
+        return personMapper.mapp(personRepository.save(person));
     }
 
     public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {

@@ -1,6 +1,5 @@
 package se.iths.grocerylistgenerator.dto;
 
-import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.model.Store;
 
@@ -10,11 +9,11 @@ public class PersonDto {
 
     private Long id;
     private String username;
-    private Set<Ingredient> groceries;
+    private Set<IngredientDto> groceries;
     private Set<Recipe> recipes;
     private Store favouriteStore;
 
-    public PersonDto(Long id, String username, Set<Ingredient> groceries, Set<Recipe> recipes, Store favouriteStore) {
+    public PersonDto(Long id, String username, Set<IngredientDto> groceries, Set<Recipe> recipes, Store favouriteStore) {
         this.id = id;
         this.username = username;
         this.groceries = groceries;
@@ -38,11 +37,11 @@ public class PersonDto {
         this.username = username;
     }
 
-    public Set<Ingredient> getGroceries() {
+    public Set<IngredientDto> getGroceries() {
         return groceries;
     }
 
-    public void setGroceries(Set<Ingredient> groceries) {
+    public void setGroceries(Set<IngredientDto> groceries) {
         this.groceries = groceries;
     }
 
