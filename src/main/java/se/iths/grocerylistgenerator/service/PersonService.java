@@ -3,6 +3,7 @@ package se.iths.grocerylistgenerator.service;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.*;
 import se.iths.grocerylistgenerator.mapper.PersonMapper;
+import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
 import java.util.List;
@@ -66,18 +67,18 @@ public class PersonService {
         personDto.addRecipeToRecipeList(recipeDto);
         return personMapper.mapp(personRepository.save(personMapper.mapp(personDto)));
     }
-//
-//    public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {
-//        PersonDto personDto = findPersonById(personId).get();
-//        IngredientDto ingredientDto = ingredientService.getIngredientById(ingredientId);
-//        person.removeIngredientFromGroceryList(ingredient);
-//        return personMapper.mapp(personRepository.save(person));
-//    }
-//
-//    public PersonDto removeRecipeFromRecipeList(Long personId, Long recipeId) {
-//        PersonDto personDto = findPersonById(personId).get();
-//        Recipe recipe = recipeService.findById(recipeId).get();
-//        person.removeRecipeFromRecipeList(recipe);
-//        return personMapper.mapp(personRepository.save(person));
-//    }
+
+    public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {
+        PersonDto personDto = findPersonById(personId).get();
+        IngredientDto ingredientDto = ingredientService.getIngredientById(ingredientId);
+        personDto.removeIngredientFromGroceryList(ingredientDto);
+        return personMapper.mapp(personRepository.save(personMapper.mapp(personDto)));
+    }
+
+    public PersonDto removeRecipeFromRecipeList(Long personId, Long recipeId) {
+        PersonDto personDto = findPersonById(personId).get();
+        RecipeDto recipeDto = recipeService.findRecipeById(recipeId).get();
+        personDto.removeRecipeFromRecipeList(recipeDto);
+        return personMapper.mapp(personRepository.save(personMapper.mapp(personDto)));
+    }
 }

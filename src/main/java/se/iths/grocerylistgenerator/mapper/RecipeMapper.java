@@ -30,7 +30,7 @@ public class RecipeMapper {
         return recipes
                 .stream()
                 .map(this::mapp)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Set<RecipeDto> mapp(Set<Recipe> ingredients) {

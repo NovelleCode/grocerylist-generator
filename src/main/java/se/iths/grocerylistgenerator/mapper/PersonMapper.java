@@ -25,6 +25,7 @@ public class PersonMapper {
     public Person mapp(AddPersonDto addPersonDto) {
         return new Person(addPersonDto.getUsername(), addPersonDto.getPassword());
     }
+
     public Person mapp(PersonDto personDto) {
         return new Person(personDto.getId(), personDto.getUsername(), ingredientMapper.mappSetToIngredient(personDto.getGroceries()));
     }

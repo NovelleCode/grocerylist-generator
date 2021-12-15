@@ -1,22 +1,19 @@
 package se.iths.grocerylistgenerator.dto;
 
-import se.iths.grocerylistgenerator.model.StoreContactInfo;
-
 public class StoreDto {
 
     private Long id;
     private String name;
-    private StoreContactInfo storeContactInfo;
+    private StoreContactInfoDto storeContactInfoDto;
 
-    public StoreDto(Long id, String name, StoreContactInfo storeContactInfo) {
+    public StoreDto(Long id, String name, StoreContactInfoDto storeContactInfoDto) {
         this.id = id;
         this.name = name;
-        this.storeContactInfo = storeContactInfo;
+        this.storeContactInfoDto = storeContactInfoDto;
     }
 
     public StoreDto() {
     }
-
 
     public Long getId() {
         return id;
@@ -34,11 +31,11 @@ public class StoreDto {
         this.name = name;
     }
 
-    public StoreContactInfo getStoreContactInfo() {
-        return storeContactInfo;
+    public StoreContactInfoDto getStoreContactInfoDto() {
+        return storeContactInfoDto;
     }
 
-    public void setStoreContactInfo(StoreContactInfo storeContactInfo) {
-        this.storeContactInfo = storeContactInfo;
+    public void setStoreContactInfoDto(StoreContactInfoDto storeContactInfoDto) {
+        this.storeContactInfoDto = storeContactInfoDto;
     }
 }

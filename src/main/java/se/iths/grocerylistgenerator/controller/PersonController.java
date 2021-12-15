@@ -61,16 +61,16 @@ public class PersonController {
         PersonDto person = personService.addFavouriteStore(personId, storeId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
-//
-//    @DeleteMapping("{personId}/grocerylist/ingredients/{ingredientId}")
-//    public ResponseEntity<PersonDto> removeIngredientFromGroceryList(@PathVariable Long personId, @PathVariable Long ingredientId) {
-//        PersonDto person = personService.removeIngredientFromGroceryList(personId, ingredientId);
-//        return new ResponseEntity<>(person, HttpStatus.OK);
-//    }
-//
-//    @DeleteMapping("{personId}/recipes/{recipeId}")
-//    public ResponseEntity<PersonDto> removeRecipeFromRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
-//        PersonDto person = personService.removeRecipeFromRecipeList(personId, recipeId);
-//        return new ResponseEntity<>(person, HttpStatus.OK);
-//    }
+
+    @DeleteMapping("{personId}/grocerylist/ingredients/{ingredientId}")
+    public ResponseEntity<PersonDto> removeIngredientFromGroceryList(@PathVariable Long personId, @PathVariable Long ingredientId) {
+        PersonDto person = personService.removeIngredientFromGroceryList(personId, ingredientId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
+
+    @DeleteMapping("{personId}/recipes/{recipeId}")
+    public ResponseEntity<PersonDto> removeRecipeFromRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
+        PersonDto person = personService.removeRecipeFromRecipeList(personId, recipeId);
+        return new ResponseEntity<>(person, HttpStatus.OK);
+    }
 }

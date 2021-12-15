@@ -1,23 +1,17 @@
-package se.iths.grocerylistgenerator.model;
+package se.iths.grocerylistgenerator.dto;
 
-import javax.persistence.*;
-
-@Entity
-public class StoreContactInfo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class StoreContactInfoDto {
     private Long id;
-
     private String address;
     private String phoneNumber;
 
-    public StoreContactInfo(String address, String phoneNumber) {
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+    public StoreContactInfoDto() {
     }
 
-    public StoreContactInfo() {
+    public StoreContactInfoDto(Long id, String address, String phoneNumber) {
+        this.id = id;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {

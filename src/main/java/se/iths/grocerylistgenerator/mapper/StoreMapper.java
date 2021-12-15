@@ -11,15 +11,20 @@ import java.util.stream.Collectors;
 @Service
 public class StoreMapper {
 
-    public StoreMapper() {
+    public final StoreContactInfoMapper storeContactInfoMapper;
+
+    public StoreMapper(StoreContactInfoMapper storeContactInfoMapper) {
+        this.storeContactInfoMapper = storeContactInfoMapper;
     }
 
     public Store mapp(StoreDto storeDto) {
-        return new Store(storeDto.getName(), storeDto.getStoreContactInfo());
+        return new Store(storeDto.getName(), storeContactInfoMapper.mapp(storeDto.getStoreContactInfoDto()));
     }
 
     public StoreDto mapp(Store store) {
-        return new StoreDto(store.getId(), store.getName(), store.getStoreContactInfo());
+        if (store == null)
+            return new StoreDto(null, null, null);
+        return new StoreDto(store.getId(), store.getName(), storeContactInfoMapper.mapp(store.getStoreContactInfo()));
     }
 
     public List<StoreDto> mapp(List<Store> stores) {
