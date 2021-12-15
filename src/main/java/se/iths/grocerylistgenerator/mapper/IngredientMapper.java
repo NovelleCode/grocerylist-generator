@@ -8,6 +8,7 @@ import se.iths.grocerylistgenerator.model.Ingredient;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,7 +18,7 @@ public class IngredientMapper {
     }
 
     public Ingredient mapp(IngredientDto ingredientDto) {
-        return new Ingredient(ingredientDto.getName(), ingredientDto.getCategory());
+        return new Ingredient(ingredientDto.getId(), ingredientDto.getName(), ingredientDto.getCategory());
     }
 
     public IngredientDto mapp(Ingredient ingredient) {
@@ -29,6 +30,20 @@ public class IngredientMapper {
                 .stream()
                 .map(this::mapp)
                 .collect(Collectors.toList());
+    }
+
+    public Set<IngredientDto> mapp(Set<Ingredient> ingredients) {
+        return ingredients
+                .stream()
+                .map(this::mapp)
+                .collect(Collectors.toSet());
+    }
+
+    public Set<Ingredient> mappSetToIngredient(Set<IngredientDto> ingredients) {
+        return ingredients
+                .stream()
+                .map(this::mapp)
+                .collect(Collectors.toSet());
     }
 
     public Optional<IngredientDto> mapp(Optional<Ingredient> optionalIngredient) {

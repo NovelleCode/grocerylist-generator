@@ -12,15 +12,23 @@ import java.util.stream.Collectors;
 @Service
 public class PersonMapper {
 
-    public PersonMapper() {
+    IngredientMapper ingredientMapper;
+    RecipeMapper recipeMapper;
+
+    public PersonMapper(IngredientMapper ingredientMapper, RecipeMapper recipeMapper) {
+        this.ingredientMapper = ingredientMapper;
+        this.recipeMapper = recipeMapper;
     }
 
     public Person mapp(AddPersonDto addPersonDto) {
         return new Person(addPersonDto.getUsername(), addPersonDto.getPassword());
     }
+    public Person mapp(PersonDto personDto) {
+        return new Person(personDto.getId(), personDto.getUsername(), ingredientMapper.mappSetToIngredient(personDto.getGroceries()));
+    }
 
     public PersonDto mapp(Person person) {
-        return new PersonDto(person.getId(), person.getUsername(), person.getGroceries(), person.getRecipes(), person.getFavouriteStore());
+        return new PersonDto(person.getId(), person.getUsername(), ingredientMapper.mapp(person.getGroceries()), recipeMapper.mapp(person.getRecipes()), person.getFavouriteStore());
     }
 
     public List<PersonDto> mapp(List<Person> all) {

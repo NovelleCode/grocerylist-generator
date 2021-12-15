@@ -44,6 +44,12 @@ public class Person {
         this.favouriteStore = favouriteStore;
     }
 
+    public Person(Long id, String username, Set<Ingredient> groceries) {
+        this.id = id;
+        this.username = username;
+        this.groceries = groceries;
+    }
+
     public Person(String username, String password) {
         this.username = username;
         this.password = password;

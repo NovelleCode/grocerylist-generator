@@ -1,12 +1,13 @@
 package se.iths.grocerylistgenerator.controller;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import se.iths.grocerylistgenerator.dto.StoreDto;
 import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.service.StoreService;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,20 +21,20 @@ public class StoreController {
     }
 
     @PostMapping()
-    public ResponseEntity<Store> createStore(@RequestBody Store store){
-        Store createdStore = storeService.createStore(store);
+    public ResponseEntity<StoreDto> createStore(@RequestBody StoreDto storeDto){
+        StoreDto createdStore = storeService.createStore(storeDto);
         return new ResponseEntity<>(createdStore, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<Store>> findStoreById(@PathVariable Long id){
-        Optional<Store> foundStore = storeService.findStoreById(id);
+    public ResponseEntity<Optional<StoreDto>> findStoreById(@PathVariable Long id){
+        Optional<StoreDto> foundStore = storeService.findStoreById(id);
         return new ResponseEntity<>(foundStore, HttpStatus.OK);
     }
 
     @GetMapping()
-    public ResponseEntity<Iterable<Store>> findAllStores(){
-        Iterable<Store> allStores = storeService.findAllStores();
+    public ResponseEntity<List<StoreDto>> findAllStores(){
+        List<StoreDto> allStores = storeService.findAllStores();
         return new ResponseEntity<>(allStores, HttpStatus.OK);
     }
 

@@ -9,9 +9,7 @@ import java.util.Optional;
 @Service
 public class StoreContactInfoService {
 
-
     private final StoreContactInfoRepository storeContactInfoRepository;
-
 
     public StoreContactInfoService(StoreContactInfoRepository storeContactInfoRepository) {
         this.storeContactInfoRepository = storeContactInfoRepository;

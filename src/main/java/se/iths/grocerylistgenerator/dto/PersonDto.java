@@ -10,16 +10,20 @@ public class PersonDto {
 
     private Long id;
     private String username;
-    private Set<Ingredient> groceries;
-    private Set<Recipe> recipes;
-    private Store favouriteStore;
+    private Set<IngredientDto> groceries;
+    private Set<RecipeDto> recipes;
+    private StoreDto favouriteStore;
 
-    public PersonDto(Long id, String username, Set<Ingredient> groceries, Set<Recipe> recipes, Store favouriteStore) {
+    public PersonDto(Long id, String username, Set<IngredientDto> groceries, Set<RecipeDto> recipes, StoreDto favouriteStore) {
         this.id = id;
         this.username = username;
         this.groceries = groceries;
         this.recipes = recipes;
         this.favouriteStore = favouriteStore;
+    }
+
+    public void addIngredientToGroceryList(IngredientDto ingredientDto) {
+        groceries.add(ingredientDto);
     }
 
     public Long getId() {
@@ -38,27 +42,27 @@ public class PersonDto {
         this.username = username;
     }
 
-    public Set<Ingredient> getGroceries() {
+    public Set<IngredientDto> getGroceries() {
         return groceries;
     }
 
-    public void setGroceries(Set<Ingredient> groceries) {
+    public void setGroceries(Set<IngredientDto> groceries) {
         this.groceries = groceries;
     }
 
-    public Set<Recipe> getRecipes() {
+    public Set<RecipeDto> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(Set<Recipe> recipes) {
+    public void setRecipes(Set<RecipeDto> recipes) {
         this.recipes = recipes;
     }
 
-    public Store getFavouriteStore() {
+    public StoreDto getFavouriteStore() {
         return favouriteStore;
     }
 
-    public void setFavouriteStore(Store favouriteStore) {
+    public void setFavouriteStore(StoreDto favouriteStore) {
         this.favouriteStore = favouriteStore;
     }
 }

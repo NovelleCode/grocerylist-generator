@@ -20,12 +20,19 @@ public class Ingredient {
         this.category = category;
     }
 
+    public Ingredient(Long id, String name, Category category) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+    }
+
     public Ingredient(String name) {
         this.name = name;
     }
 
     public Ingredient() {
     }
+
 
     public Long getId() {
         return id;

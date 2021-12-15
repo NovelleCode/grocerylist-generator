@@ -1,6 +1,6 @@
 package se.iths.grocerylistgenerator.mapper;
 
-import se.iths.grocerylistgenerator.dto.StoreDto;
+import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.StoreDto;
 import se.iths.grocerylistgenerator.model.Store;
 
@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class StoreMapper {
 
     public StoreMapper() {

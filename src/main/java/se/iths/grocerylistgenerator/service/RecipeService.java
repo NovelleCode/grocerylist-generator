@@ -3,7 +3,6 @@ package se.iths.grocerylistgenerator.service;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.RecipeDto;
 import se.iths.grocerylistgenerator.mapper.RecipeMapper;
-import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.repository.RecipeRepository;
 
 import java.util.List;
@@ -25,12 +24,7 @@ public class RecipeService {
     }
 
     public Optional<RecipeDto> findRecipeById(Long id){
-        return recipeMapper.mapp(findById(id));
-    }
-
-    //TODO:Samma här som i andra klasser. Kolla över logigen i att ha två metoder. Person behöver recipe
-    public Optional<Recipe> findById(Long id) {
-        return recipeRepository.findById(id);
+        return recipeMapper.mapp(recipeRepository.findById(id));
     }
 
     public List<RecipeDto> findAllRecipes(){
