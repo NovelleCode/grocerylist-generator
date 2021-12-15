@@ -50,6 +50,14 @@ public class Person {
         this.groceries = groceries;
     }
 
+    public Person(Long id, String username, Set<Ingredient> groceries, Set<Recipe> recipes, Store favouriteStore) {
+        this.id = id;
+        this.username = username;
+        this.groceries = groceries;
+        this.recipes = recipes;
+        this.favouriteStore = favouriteStore;
+    }
+
     public Person(String username, String password) {
         this.username = username;
         this.password = password;

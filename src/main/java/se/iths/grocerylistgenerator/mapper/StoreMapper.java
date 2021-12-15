@@ -18,12 +18,10 @@ public class StoreMapper {
     }
 
     public Store mapp(StoreDto storeDto) {
-        return new Store(storeDto.getName(), storeContactInfoMapper.mapp(storeDto.getStoreContactInfoDto()));
+        return new Store(storeDto.getId(), storeDto.getName(), storeContactInfoMapper.mapp(storeDto.getStoreContactInfoDto()));
     }
 
     public StoreDto mapp(Store store) {
-        if (store == null)
-            return new StoreDto(null, null, null);
         return new StoreDto(store.getId(), store.getName(), storeContactInfoMapper.mapp(store.getStoreContactInfo()));
     }
 
@@ -31,7 +29,7 @@ public class StoreMapper {
         return stores
                 .stream()
                 .map(this::mapp)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Optional<StoreDto> mapp(Optional<Store> optionalStore) {

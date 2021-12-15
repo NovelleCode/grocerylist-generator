@@ -27,19 +27,20 @@ public class PersonMapper {
     }
 
     public Person mapp(PersonDto personDto) {
-        return new Person(personDto.getId(), personDto.getUsername(), ingredientMapper.mappSetToIngredient(personDto.getGroceries()));
+        return new Person(personDto.getId(), personDto.getUsername(), ingredientMapper.mappSetToIngredient(personDto.getGroceries()),
+                recipeMapper.mappSetToRecipe(personDto.getRecipes()), storeMapper.mapp(personDto.getFavouriteStore()));
     }
 
     public PersonDto mapp(Person person) {
-        return new PersonDto(person.getId(), person.getUsername(), ingredientMapper.mapp(person.getGroceries())
-                , recipeMapper.mapp(person.getRecipes()), storeMapper.mapp(person.getFavouriteStore()));
+        return new PersonDto(person.getId(), person.getUsername(), ingredientMapper.mapp(person.getGroceries()),
+                recipeMapper.mapp(person.getRecipes()), storeMapper.mapp(person.getFavouriteStore()));
     }
 
     public List<PersonDto> mapp(List<Person> all) {
         return all
                 .stream()
                 .map(this::mapp)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Optional<PersonDto> mapp(Optional<Person> optionalPerson) {

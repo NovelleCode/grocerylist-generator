@@ -3,7 +3,6 @@ package se.iths.grocerylistgenerator.service;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.*;
 import se.iths.grocerylistgenerator.mapper.PersonMapper;
-import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
 import java.util.List;

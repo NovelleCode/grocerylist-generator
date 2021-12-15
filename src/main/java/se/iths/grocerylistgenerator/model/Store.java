@@ -27,6 +27,12 @@ public class Store {
     public Store() {
     }
 
+    public Store(Long id, String name, StoreContactInfo storeContactInfo) {
+        this.id = id;
+        this.name = name;
+        this.storeContactInfo = storeContactInfo;
+    }
+
     public Long getId() {
         return id;
     }

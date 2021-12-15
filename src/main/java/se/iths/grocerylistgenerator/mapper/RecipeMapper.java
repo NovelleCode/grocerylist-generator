@@ -45,4 +45,11 @@ public class RecipeMapper {
             return Optional.empty();
         return Optional.of(mapp(optionalRecipe.get()));
     }
+
+    public Set<Recipe> mappSetToRecipe(Set<RecipeDto> recipes) {
+            return recipes
+                    .stream()
+                    .map(this::mapp)
+                    .collect(Collectors.toSet());
+    }
 }

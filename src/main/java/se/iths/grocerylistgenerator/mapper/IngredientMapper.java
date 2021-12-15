@@ -27,7 +27,7 @@ public class IngredientMapper {
         return ingredients
                 .stream()
                 .map(this::mapp)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Set<IngredientDto> mapp(Set<Ingredient> ingredients) {

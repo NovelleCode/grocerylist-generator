@@ -17,6 +17,12 @@ public class StoreContactInfo {
         this.phoneNumber = phoneNumber;
     }
 
+    public StoreContactInfo(Long id, String address, String phoneNumber) {
+        this.id = id;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+
     public StoreContactInfo() {
     }
 
