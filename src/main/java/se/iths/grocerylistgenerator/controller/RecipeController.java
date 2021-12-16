@@ -32,8 +32,8 @@ public class RecipeController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<RecipeDto>> findRecipeById(@PathVariable Long id){
-        Optional<RecipeDto> foundRecipe = recipeService.findRecipeById(id);
+    public ResponseEntity<RecipeDto> findRecipeById(@PathVariable Long id){
+        RecipeDto foundRecipe = recipeService.findRecipeById(id);
         return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
     }
 
