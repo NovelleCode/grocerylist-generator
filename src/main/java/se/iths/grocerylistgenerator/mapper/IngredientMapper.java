@@ -12,15 +12,18 @@ import java.util.stream.Collectors;
 @Service
 public class IngredientMapper {
 
-    public IngredientMapper() {
+    CategoryMapper categoryMapper;
+
+    public IngredientMapper(CategoryMapper categoryMapper) {
+        this.categoryMapper = categoryMapper;
     }
 
     public Ingredient mapp(IngredientDto ingredientDto) {
-        return new Ingredient(ingredientDto.getName(), ingredientDto.getCategory());
+        return new Ingredient(ingredientDto.getName(), categoryMapper.mapp(ingredientDto.getCategoryDto()));
     }
 
     public IngredientDto mapp(Ingredient ingredient) {
-        return new IngredientDto(ingredient.getId(), ingredient.getName(), ingredient.getCategory());
+        return new IngredientDto(ingredient.getId(), ingredient.getName(), categoryMapper.mapp(ingredient.getCategory()));
     }
 
     public List<IngredientDto> mapp(List<Ingredient> ingredients) {

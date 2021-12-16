@@ -4,11 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.dto.IngredientDto;
-import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.service.IngredientService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController()
 @RequestMapping("ingredients")

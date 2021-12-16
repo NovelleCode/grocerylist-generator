@@ -20,7 +20,7 @@ public class IngredientService {
     }
 
     public IngredientDto createIngredient(IngredientDto ingredientDto) {
-        if (ingredientDto.getName().isEmpty() || ingredientDto.getCategory() == null)
+        if (ingredientDto.getName().isEmpty() || ingredientDto.getCategoryDto() == null)
             throw new RuntimeException("Incomplete ingredient");
         return ingredientMapper.mapp(ingredientRepository.save(ingredientMapper.mapp(ingredientDto)));
     }

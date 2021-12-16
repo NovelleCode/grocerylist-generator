@@ -1,11 +1,9 @@
 package se.iths.grocerylistgenerator.controller;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.dto.StoreDto;
-import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.service.StoreService;
 
 import java.util.List;
