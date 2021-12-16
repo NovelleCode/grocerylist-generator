@@ -25,8 +25,8 @@ public class StoreContactInfoController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<StoreContactInfo>> findStoreContactInfoById(@PathVariable Long id){
-        Optional<StoreContactInfo> foundStoreContactInfo = storeContactInfoService.findStoreContactInfoById(id);
+    public ResponseEntity<StoreContactInfo> findStoreContactInfoById(@PathVariable Long id){
+        StoreContactInfo foundStoreContactInfo = storeContactInfoService.findStoreContactInfoById(id);
         return new ResponseEntity<>(foundStoreContactInfo, HttpStatus.OK);
     }
 
