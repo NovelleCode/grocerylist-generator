@@ -2,6 +2,7 @@ package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.RecipeDto;
+import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.RecipeMapper;
 import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.repository.RecipeRepository;
@@ -24,12 +25,12 @@ public class RecipeService {
         return recipeMapper.mapp(recipeRepository.save(recipeMapper.mapp(recipeDto)));
     }
 
-    public Optional<RecipeDto> findRecipeById(Long id){
+    public RecipeDto findRecipeById(Long id){
         return recipeMapper.mapp(findById(id));
     }
 
-    public Optional<Recipe> findById(Long id) {
-        return recipeRepository.findById(id);
+    public Recipe findById(Long id) {
+        return recipeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Recipe with id: " + id + " not found"));
     }
 
     public List<RecipeDto> findAllRecipes(){
