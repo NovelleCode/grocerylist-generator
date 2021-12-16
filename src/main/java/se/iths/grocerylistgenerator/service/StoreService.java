@@ -2,12 +2,14 @@ package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.StoreDto;
+import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.StoreMapper;
 import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.repository.StoreRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StoreService {
@@ -20,8 +22,28 @@ public class StoreService {
         this.storeMapper = storeMapper;
     }
 
-    public StoreDto createStore(StoreDto storeDto){
+    public StoreDto createStore(StoreDto storeDto) {
+        isValidStoreDto(storeDto);
+        checkStoreNotInDatabase(storeDto);
         return storeMapper.mapp(storeRepository.save(storeMapper.mapp(storeDto)));
+    }
+
+    private void isValidStoreDto(StoreDto storeDto) {
+        if (storeDto.getName() == null || storeDto.getName().isEmpty()) {
+            throw new BadRequestException("Invalid input, you must enter a name for the store!");
+        }
+    }
+
+    private void checkStoreNotInDatabase(StoreDto storeDto) {
+        Optional<Store> store = findStoreByName(storeDto.getName());
+        if (store.isPresent()) {
+            throw new BadRequestException("The store already exists in the database! Id: "
+                    + store.get().getId() + ", Name: " + store.get().getName());
+        }
+    }
+
+    private Optional<Store> findStoreByName(String name) {
+        return storeRepository.findByName(name);
     }
 
     public StoreDto findStoreById(Long id) {
