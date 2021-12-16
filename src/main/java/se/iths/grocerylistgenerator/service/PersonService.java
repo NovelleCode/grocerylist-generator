@@ -13,6 +13,7 @@ import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -33,14 +34,25 @@ public class PersonService {
 
     public PersonDto createPerson(AddPersonDto addPersonDto) {
         isValidAddPersonDto(addPersonDto);
+        checkUsernameNotTaken(addPersonDto);
         return personMapper.mapp(personRepository.save(personMapper.mapp(addPersonDto)));
     }
 
     private void isValidAddPersonDto(AddPersonDto addPersonDto) {
         if(addPersonDto.getUsername() == null || addPersonDto.getUsername().isEmpty()
                 || addPersonDto.getPassword() == null || addPersonDto.getPassword().isEmpty()) {
-            throw new BadRequestException("Invalid input");
+            throw new BadRequestException("Invalid input in request body");
         }
+    }
+
+    private void checkUsernameNotTaken(AddPersonDto addPersonDto) {
+        if(findByUsername(addPersonDto.getUsername()).isPresent()){
+            throw new BadRequestException("Username already taken!");
+        }
+    }
+
+    private Optional<Person> findByUsername(String username) {
+        return personRepository.findByUsername(username);
     }
 
     public List<PersonDto> findAllPersons() {
