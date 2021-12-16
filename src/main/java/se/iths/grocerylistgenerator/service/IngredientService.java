@@ -1,7 +1,9 @@
 package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.IngredientDto;
+import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.IngredientMapper;
 import se.iths.grocerylistgenerator.model.Ingredient;
@@ -21,10 +23,17 @@ public class IngredientService {
     }
 
     public IngredientDto createIngredient(IngredientDto ingredientDto) {
-        if (ingredientDto.getName().isEmpty() || ingredientDto.getCategoryDto() == null)
-            throw new RuntimeException("Incomplete ingredient");
+        isValidIngredientDto(ingredientDto);
         return ingredientMapper.mapp(ingredientRepository.save(ingredientMapper.mapp(ingredientDto)));
     }
+
+    private void isValidIngredientDto(IngredientDto ingredientDto) {
+        if(ingredientDto.getName() == null || ingredientDto.getName().isEmpty()) {
+            throw new BadRequestException("Invalid input, you must enter a name for the ingredient!");
+        }
+    }
+
+    //TODO: Ev lägga till en check här för att kolla så att ingrediensen inte redan finns i databasen?
 
     public List<IngredientDto> getAllIngredients() {
         return ingredientMapper.mapp(ingredientRepository.findAll());
