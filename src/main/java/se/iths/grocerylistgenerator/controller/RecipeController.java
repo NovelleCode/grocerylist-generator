@@ -3,7 +3,7 @@ package se.iths.grocerylistgenerator.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.iths.grocerylistgenerator.model.Recipe;
+import se.iths.grocerylistgenerator.dto.RecipeDto;
 import se.iths.grocerylistgenerator.service.RecipeService;
 
 import java.util.List;
@@ -20,26 +20,26 @@ public class RecipeController {
     }
 
     @PostMapping()
-    public ResponseEntity<Recipe> createRecipe(@RequestBody Recipe recipe){
-        Recipe createdRecipe = recipeService.createRecipe(recipe);
+    public ResponseEntity<RecipeDto> createRecipe(@RequestBody RecipeDto recipeDto){
+        RecipeDto createdRecipe = recipeService.createRecipe(recipeDto);
         return new ResponseEntity<>(createdRecipe, HttpStatus.CREATED);
     }
 
     @GetMapping()
-    public ResponseEntity<Iterable<Recipe>> findAllRecipes(){
-        Iterable<Recipe> allRecipes = recipeService.findAllRecipes();
+    public ResponseEntity<List<RecipeDto>> findAllRecipes(){
+        List<RecipeDto> allRecipes = recipeService.findAllRecipes();
         return new ResponseEntity<>(allRecipes, HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<Recipe>> findRecipeById(@PathVariable Long id){
-        Optional<Recipe> foundRecipe = recipeService.findRecipeById(id);
+    public ResponseEntity<Optional<RecipeDto>> findRecipeById(@PathVariable Long id){
+        Optional<RecipeDto> foundRecipe = recipeService.findRecipeById(id);
         return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
     }
 
     @GetMapping("ingredients")
-    public ResponseEntity<Iterable<Recipe>> findRecipesByIngredients(@RequestParam List<Long> ingredientIds){
-        Iterable<Recipe> foundRecipe=  recipeService.findRecipeByIngredient(ingredientIds);
+    public ResponseEntity<List<RecipeDto>> findRecipesByIngredients(@RequestParam List<Long> ingredientIds){
+        List<RecipeDto> foundRecipe = recipeService.findRecipeByIngredient(ingredientIds);
         return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
     }
 

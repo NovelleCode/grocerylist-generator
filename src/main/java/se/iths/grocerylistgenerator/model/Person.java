@@ -14,7 +14,7 @@ public class Person {
     private String username;
     private String password;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "role_id")
     private Role role;
 
@@ -32,7 +32,7 @@ public class Person {
             inverseJoinColumns = @JoinColumn(name = "recipe_id"))
     private Set<Recipe> recipes = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "store_id")
     private Store favouriteStore;
 
@@ -44,10 +44,9 @@ public class Person {
         this.favouriteStore = favouriteStore;
     }
 
-    public Person(String username, String password, Role role) {
+    public Person(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
     }
 
     public Person() {

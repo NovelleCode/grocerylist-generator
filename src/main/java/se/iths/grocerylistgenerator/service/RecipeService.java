@@ -1,6 +1,8 @@
 package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.grocerylistgenerator.dto.RecipeDto;
+import se.iths.grocerylistgenerator.mapper.RecipeMapper;
 import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.repository.RecipeRepository;
 
@@ -11,25 +13,30 @@ import java.util.Optional;
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final RecipeMapper recipeMapper;
 
-    public RecipeService(RecipeRepository recipeRepository) {
+    public RecipeService(RecipeRepository recipeRepository, RecipeMapper recipeMapper) {
         this.recipeRepository = recipeRepository;
+        this.recipeMapper = recipeMapper;
     }
 
-
-    public Recipe createRecipe(Recipe recipe){
-        return recipeRepository.save(recipe);
+    public RecipeDto createRecipe(RecipeDto recipeDto){
+        return recipeMapper.mapp(recipeRepository.save(recipeMapper.mapp(recipeDto)));
     }
 
-    public Optional<Recipe> findRecipeById(Long id){
+    public Optional<RecipeDto> findRecipeById(Long id){
+        return recipeMapper.mapp(findById(id));
+    }
+
+    public Optional<Recipe> findById(Long id) {
         return recipeRepository.findById(id);
     }
 
-    public Iterable<Recipe> findAllRecipes(){
-        return recipeRepository.findAll();
+    public List<RecipeDto> findAllRecipes(){
+        return recipeMapper.mapp(recipeRepository.findAll());
     }
 
-    public List<Recipe> findRecipeByIngredient(List<Long> ingredientIds){
-        return recipeRepository.findRecipesThatMatchIngredientIds(ingredientIds);
+    public List<RecipeDto> findRecipeByIngredient(List<Long> ingredientIds){
+        return recipeMapper.mapp(recipeRepository.findRecipesThatMatchIngredientIds(ingredientIds));
     }
 }

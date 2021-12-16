@@ -3,7 +3,7 @@ package se.iths.grocerylistgenerator.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.iths.grocerylistgenerator.model.Category;
+import se.iths.grocerylistgenerator.dto.CategoryDto;
 import se.iths.grocerylistgenerator.service.CategoryService;
 
 import java.util.List;
@@ -19,17 +19,17 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
-        return new ResponseEntity<>(categoryService.createCategory(category), HttpStatus.CREATED);
+    public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto) {
+        return new ResponseEntity<>(categoryService.createCategory(categoryDto), HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Category>> getAllCategories() {
+    public ResponseEntity<List<CategoryDto>> getAllCategories() {
         return new ResponseEntity<>(categoryService.getAllCategories(), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable Long id) {
+    public ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long id) {
         return new ResponseEntity<>(categoryService.getCategoryById(id), HttpStatus.OK);
     }
 }
