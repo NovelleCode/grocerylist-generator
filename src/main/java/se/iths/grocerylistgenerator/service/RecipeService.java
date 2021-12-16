@@ -28,7 +28,6 @@ public class RecipeService {
         return recipeMapper.mapp(findById(id));
     }
 
-    //TODO:Samma här som i andra klasser. Kolla över logigen i att ha två metoder. Person behöver recipe
     public Optional<Recipe> findById(Long id) {
         return recipeRepository.findById(id);
     }

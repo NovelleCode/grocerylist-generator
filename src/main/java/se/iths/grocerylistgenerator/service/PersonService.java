@@ -31,7 +31,6 @@ public class PersonService {
     }
 
     public PersonDto createPerson(AddPersonDto addPersonDto) {
-        // TODO: Felhantering
         return personMapper.mapp(personRepository.save(personMapper.mapp(addPersonDto)));
     }
 
@@ -40,11 +39,9 @@ public class PersonService {
     }
 
     public Optional<PersonDto> findPersonById(Long id) {
-        // TODO: Felhantering
         return personMapper.mapp(findById(id));
     }
 
-    //TODO: Kolla över ligiken att ha på denna metoden och ovan metod.
     private Optional<Person> findById (Long id) {
         return personRepository.findById(id);
     }

@@ -33,7 +33,6 @@ public class IngredientService {
         return ingredientMapper.mapp(findIngredientById(id));
     }
 
-    //TODO: Kolla på denna metoden och ovan. PersonService använder find och vill ha Ingredient inte dto...
     public Ingredient findIngredientById(Long id) {
         return ingredientRepository.findById(id).orElseThrow(() -> new RuntimeException("Ingredient with id " + id + "not found"));
     }
