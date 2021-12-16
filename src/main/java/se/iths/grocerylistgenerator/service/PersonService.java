@@ -55,14 +55,14 @@ public class PersonService {
 
     public PersonDto addIngredientToGroceryList(Long personId, Long ingredientId) {
         Person person = findById(personId).get();
-        Ingredient ingredient = ingredientService.findIngredientById(ingredientId);
+        Ingredient ingredient = ingredientService.findById(ingredientId);
         person.addIngredientToGroceryList(ingredient);
         return personMapper.mapp(personRepository.save(person));
     }
 
     public PersonDto addFavouriteStore(Long personId, Long storeId) {
         Person person = findById(personId).get();
-        Store store = storeService.findStoreById(storeId).get();
+        Store store = storeService.findById(storeId).get();
         person.setFavouriteStore(store);
         return personMapper.mapp(personRepository.save(person));
     }
@@ -76,7 +76,7 @@ public class PersonService {
 
     public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {
         Person person = findById(personId).get();
-        Ingredient ingredient = ingredientService.findIngredientById(ingredientId);
+        Ingredient ingredient = ingredientService.findById(ingredientId);
         person.removeIngredientFromGroceryList(ingredient);
         return personMapper.mapp(personRepository.save(person));
     }

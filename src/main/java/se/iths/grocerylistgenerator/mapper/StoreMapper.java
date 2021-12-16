@@ -18,11 +18,11 @@ public class StoreMapper {
     }
 
     public Store mapp(StoreDto storeDto) {
-        return new Store(storeDto.getName(), storeContactInfoMapper.mapp(storeDto.getStoreContactInfoDto()));
+        return new Store(storeDto.getName(), storeDto.getStoreContactInfo());
     }
 
     public StoreDto mapp(Store store) {
-        return new StoreDto(store.getId(), store.getName(), storeContactInfoMapper.mapp(store.getStoreContactInfo()));
+        return new StoreDto(store.getId(), store.getName(), store.getStoreContactInfo());
     }
 
     public List<StoreDto> mapp(List<Store> stores) {

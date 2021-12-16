@@ -30,10 +30,10 @@ public class IngredientService {
     }
 
     public IngredientDto getIngredientById(Long id) {
-        return ingredientMapper.mapp(findIngredientById(id));
+        return ingredientMapper.mapp(findById(id));
     }
 
-    public Ingredient findIngredientById(Long id) {
+    public Ingredient findById(Long id) {
         return ingredientRepository.findById(id).orElseThrow(() -> new RuntimeException("Ingredient with id " + id + "not found"));
     }
 }
