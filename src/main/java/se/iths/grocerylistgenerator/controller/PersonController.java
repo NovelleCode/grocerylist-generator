@@ -8,7 +8,6 @@ import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.service.PersonService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("persons")

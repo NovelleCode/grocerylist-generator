@@ -3,6 +3,7 @@ package se.iths.grocerylistgenerator.service;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
+import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.PersonMapper;
 import se.iths.grocerylistgenerator.model.Ingredient;
@@ -31,7 +32,15 @@ public class PersonService {
     }
 
     public PersonDto createPerson(AddPersonDto addPersonDto) {
+        isValidAddPersonDto(addPersonDto);
         return personMapper.mapp(personRepository.save(personMapper.mapp(addPersonDto)));
+    }
+
+    private void isValidAddPersonDto(AddPersonDto addPersonDto) {
+        if(addPersonDto.getUsername() == null || addPersonDto.getUsername().isEmpty()
+                || addPersonDto.getPassword() == null || addPersonDto.getPassword().isEmpty()) {
+            throw new BadRequestException("Invalid input");
+        }
     }
 
     public List<PersonDto> findAllPersons() {

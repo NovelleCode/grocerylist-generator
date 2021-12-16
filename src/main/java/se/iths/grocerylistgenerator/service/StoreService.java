@@ -8,7 +8,6 @@ import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.repository.StoreRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class StoreService {
