@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -48,6 +49,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, errorMessage, ex));
     }
+
+
+    // Custom ex
+    @ExceptionHandler({EntityNotFoundException.class})
+    public ResponseEntity<Object> entityNotFoundException(EntityNotFoundException ex){
+        logger.info(ex.getClass().getName();
+        String errorMessage = "Entity not found.";
+
+        return buildResponseEntity(new ApiError(HttpStatus.NOT_FOUND, errorMessage, ex));
+
+    }
+
 
 
 
