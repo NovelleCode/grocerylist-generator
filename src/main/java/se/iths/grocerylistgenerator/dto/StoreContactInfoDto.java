@@ -13,6 +13,11 @@ public class StoreContactInfoDto {
         this.phoneNumber = phoneNumber;
     }
 
+    public StoreContactInfoDto(String address, String phoneNumber) {
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+    }
+
     public StoreContactInfoDto() {
     }
 

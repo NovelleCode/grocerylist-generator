@@ -8,14 +8,14 @@ import se.iths.grocerylistgenerator.model.StoreContactInfo;
 public class StoreContactInfoMapper {
 
     public StoreContactInfo mapp(StoreContactInfoDto storeContactInfoDto) {
-        return new StoreContactInfo(storeContactInfoDto.getAddress(), storeContactInfoDto.getAddress());
+        return new StoreContactInfo(storeContactInfoDto.getAddress(), storeContactInfoDto.getPhoneNumber());
     }
 
     public StoreContactInfoDto mapp(StoreContactInfo storeContactInfo) {
         if(storeContactInfo == null){
             return new StoreContactInfoDto();
         }
-        return new StoreContactInfoDto(storeContactInfo.getId(), storeContactInfo.getAddress(), storeContactInfo.getAddress());
+        return new StoreContactInfoDto(storeContactInfo.getId(), storeContactInfo.getAddress(), storeContactInfo.getPhoneNumber());
     }
 
 
