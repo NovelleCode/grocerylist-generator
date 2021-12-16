@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -54,14 +53,29 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     // Custom ex
     @ExceptionHandler({EntityNotFoundException.class})
     public ResponseEntity<Object> entityNotFoundException(EntityNotFoundException ex){
-        logger.info(ex.getClass().getName();
+        logger.info(ex.getClass().getName());
         String errorMessage = "Entity not found.";
 
         return buildResponseEntity(new ApiError(HttpStatus.NOT_FOUND, errorMessage, ex));
 
     }
 
-    @ExceptionHandler({UnauthorizedException
+    @ExceptionHandler({UnauthorizedException.class})
+    public ResponseEntity<Object> unauthorizedException(UnauthorizedException ex){
+        logger.info(ex.getClass().getName());
+        String errorMessage = "You are unauthorized!";
+
+        return buildResponseEntity(new ApiError(HttpStatus.UNAUTHORIZED, errorMessage, ex));
+    }
+
+    @ExceptionHandler({BadRequestException.class})
+    public ResponseEntity<Object> badRequestException(BadRequestException ex){
+        logger.info(ex.getClass().getName());
+        String errorMessage = "Server can not process the request!";
+
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, errorMessage, ex));
+    }
+
 
 
 
