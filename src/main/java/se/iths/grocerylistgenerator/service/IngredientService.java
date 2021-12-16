@@ -2,6 +2,7 @@ package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.IngredientDto;
+import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.IngredientMapper;
 import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.repository.IngredientRepository;
@@ -34,6 +35,6 @@ public class IngredientService {
     }
 
     public Ingredient findById(Long id) {
-        return ingredientRepository.findById(id).orElseThrow(() -> new RuntimeException("Ingredient with id " + id + "not found"));
+        return ingredientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Ingredient with id " + id + "not found"));
     }
 }

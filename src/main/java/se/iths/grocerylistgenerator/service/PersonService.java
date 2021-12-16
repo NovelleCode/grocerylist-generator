@@ -98,14 +98,20 @@ public class PersonService {
     public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {
         Person person = findById(personId);
         Ingredient ingredient = ingredientService.findById(ingredientId);
-        person.removeIngredientFromGroceryList(ingredient);
-        return personMapper.mapp(personRepository.save(person));
+        if(person.getGroceries().contains(ingredient)){
+            person.removeIngredientFromGroceryList(ingredient);
+            return personMapper.mapp(personRepository.save(person));
+        }
+        throw new EntityNotFoundException("Ingredient with id: " + ingredientId + " not found and therefore not deleted.");
     }
 
     public PersonDto removeRecipeFromRecipeList(Long personId, Long recipeId) {
         Person person = findById(personId);
         Recipe recipe = recipeService.findById(recipeId);
-        person.removeRecipeFromRecipeList(recipe);
-        return personMapper.mapp(personRepository.save(person));
+        if(person.getRecipes().contains(recipe)){
+            person.removeRecipeFromRecipeList(recipe);
+            return personMapper.mapp(personRepository.save(person));
+        }
+        throw new EntityNotFoundException("Recipe with id: " + recipeId + " not found and therefore not deleted.");
     }
 }
