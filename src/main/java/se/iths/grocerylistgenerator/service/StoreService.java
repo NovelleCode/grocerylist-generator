@@ -2,6 +2,7 @@ package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.StoreDto;
+import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.StoreMapper;
 import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.repository.StoreRepository;
@@ -24,12 +25,12 @@ public class StoreService {
         return storeMapper.mapp(storeRepository.save(storeMapper.mapp(storeDto)));
     }
 
-    public Optional<StoreDto> findStoreById(Long id) {
+    public StoreDto findStoreById(Long id) {
         return storeMapper.mapp(findById(id));
     }
 
-    public Optional<Store> findById(Long id) {
-        return storeRepository.findById(id);
+    public Store findById(Long id) {
+        return storeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Store with id: " + id + " not found"));
     }
 
     public List<StoreDto> findAllStores() {

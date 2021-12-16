@@ -12,7 +12,6 @@ import se.iths.grocerylistgenerator.model.Store;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -63,7 +62,7 @@ public class PersonService {
 
     public PersonDto addFavouriteStore(Long personId, Long storeId) {
         Person person = findById(personId);
-        Store store = storeService.findById(storeId).get();
+        Store store = storeService.findById(storeId);
         person.setFavouriteStore(store);
         return personMapper.mapp(personRepository.save(person));
     }
