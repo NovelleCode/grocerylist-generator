@@ -3,9 +3,11 @@ package se.iths.grocerylistgenerator.service;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.CategoryDto;
 import se.iths.grocerylistgenerator.mapper.CategoryMapper;
+import se.iths.grocerylistgenerator.model.Category;
 import se.iths.grocerylistgenerator.repository.CategoryRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -31,5 +33,9 @@ public class CategoryService {
 
     public CategoryDto getCategoryById(Long id) {
         return categoryMapper.mapp(categoryRepository.findById(id)).orElseThrow(() -> new RuntimeException("Category with id " + id + "not found"));
+    }
+
+    public Optional<Category> findById(Long id) {
+        return categoryRepository.findById(id);
     }
 }

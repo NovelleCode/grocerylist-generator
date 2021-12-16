@@ -3,6 +3,7 @@ package se.iths.grocerylistgenerator.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import se.iths.grocerylistgenerator.dto.AddIngredientDto;
 import se.iths.grocerylistgenerator.dto.IngredientDto;
 import se.iths.grocerylistgenerator.service.IngredientService;
 
@@ -19,8 +20,13 @@ public class IngredientController {
     }
 
     @PostMapping
-    public ResponseEntity<IngredientDto> createIngredient(@RequestBody IngredientDto ingredientDto) {
-        return new ResponseEntity<>(ingredientService.createIngredient(ingredientDto), HttpStatus.CREATED);
+    public ResponseEntity<IngredientDto> createIngredient(@RequestBody AddIngredientDto addIngredientDto) {
+        return new ResponseEntity<>(ingredientService.createIngredient(addIngredientDto), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{ingredientId}/category/{categoryId}")
+    public ResponseEntity<IngredientDto> addCategoryToIngredient(@PathVariable Long ingredientId, @PathVariable Long categoryId) {
+        return new ResponseEntity<>(ingredientService.addCategoryToIngredient(ingredientId, categoryId), HttpStatus.CREATED);
     }
 
     @GetMapping
