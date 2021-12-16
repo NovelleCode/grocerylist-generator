@@ -44,9 +44,9 @@ public class PersonMapper {
                 .collect(Collectors.toList());
     }
 
-    public Optional<PersonDto> mapp(Optional<Person> optionalPerson) {
-        if (optionalPerson.isEmpty())
-            return Optional.empty();
-        return Optional.of(mapp(optionalPerson.get()));
-    }
+//    public Optional<PersonDto> mapp(Person optionalPerson) {
+//        if (optionalPerson.isEmpty())
+//            return Optional.empty();
+//        return Optional.of(mapp(optionalPerson.get()));
+//    }
 }

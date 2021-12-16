@@ -3,6 +3,7 @@ package se.iths.grocerylistgenerator.service;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
+import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.PersonMapper;
 import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.model.Person;
@@ -38,51 +39,51 @@ public class PersonService {
         return personMapper.mapp(personRepository.findAll());
     }
 
-    public Optional<PersonDto> findPersonById(Long id) {
+    public PersonDto findPersonById(Long id) {
         return personMapper.mapp(findById(id));
     }
 
-    private Optional<Person> findById (Long id) {
-        return personRepository.findById(id);
+    private Person findById (Long id) {
+        return personRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Person with id: " + id + " not found"));
     }
 
     public PersonDto addRecipeIngredientsToGroceryList(Long personId, Long recipeId) {
-        Person person = findById(personId).get();
+        Person person = findById(personId);
         Recipe recipe = recipeService.findById(recipeId).get();
         recipe.getIngredients().forEach(person::addIngredientToGroceryList);
         return personMapper.mapp(personRepository.save(person));
     }
 
     public PersonDto addIngredientToGroceryList(Long personId, Long ingredientId) {
-        Person person = findById(personId).get();
+        Person person = findById(personId);
         Ingredient ingredient = ingredientService.findById(ingredientId);
         person.addIngredientToGroceryList(ingredient);
         return personMapper.mapp(personRepository.save(person));
     }
 
     public PersonDto addFavouriteStore(Long personId, Long storeId) {
-        Person person = findById(personId).get();
+        Person person = findById(personId);
         Store store = storeService.findById(storeId).get();
         person.setFavouriteStore(store);
         return personMapper.mapp(personRepository.save(person));
     }
 
     public PersonDto addRecipeToRecipeList(Long personId, Long recipeId) {
-        Person person = findById(personId).get();
+        Person person = findById(personId);
         Recipe recipe = recipeService.findById(recipeId).get();
         person.addRecipeToRecipeList(recipe);
         return personMapper.mapp(personRepository.save(person));
     }
 
     public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {
-        Person person = findById(personId).get();
+        Person person = findById(personId);
         Ingredient ingredient = ingredientService.findById(ingredientId);
         person.removeIngredientFromGroceryList(ingredient);
         return personMapper.mapp(personRepository.save(person));
     }
 
     public PersonDto removeRecipeFromRecipeList(Long personId, Long recipeId) {
-        Person person = findById(personId).get();
+        Person person = findById(personId);
         Recipe recipe = recipeService.findById(recipeId).get();
         person.removeRecipeFromRecipeList(recipe);
         return personMapper.mapp(personRepository.save(person));

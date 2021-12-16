@@ -33,8 +33,8 @@ public class PersonController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Optional<PersonDto>> findPersonById(@PathVariable Long id){
-        Optional<PersonDto> foundPerson = personService.findPersonById(id);
+    public ResponseEntity<PersonDto> findPersonById(@PathVariable Long id){
+        PersonDto foundPerson = personService.findPersonById(id);
         return new ResponseEntity<>(foundPerson, HttpStatus.OK);
     }
 
