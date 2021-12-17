@@ -1,7 +1,7 @@
 package se.iths.grocerylistgenerator.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import se.iths.grocerylistgenerator.model.Category;
+import se.iths.grocerylistgenerator.entity.Category;
 
 import java.util.Optional;
 

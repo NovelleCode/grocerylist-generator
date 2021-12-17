@@ -2,7 +2,7 @@ package se.iths.grocerylistgenerator.mapper;
 
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.ContactInfoDto;
-import se.iths.grocerylistgenerator.model.ContactInfo;
+import se.iths.grocerylistgenerator.entity.ContactInfo;
 
 @Service
 public class ContactInfoMapper {

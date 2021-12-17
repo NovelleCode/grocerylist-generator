@@ -1,14 +1,11 @@
 package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
-import se.iths.grocerylistgenerator.dto.AddPersonDto;
-import se.iths.grocerylistgenerator.dto.CategoryDto;
 import se.iths.grocerylistgenerator.dto.IngredientDto;
 import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.IngredientMapper;
-import se.iths.grocerylistgenerator.model.Category;
-import se.iths.grocerylistgenerator.model.Ingredient;
+import se.iths.grocerylistgenerator.entity.Ingredient;
 import se.iths.grocerylistgenerator.repository.IngredientRepository;
 
 import java.util.List;

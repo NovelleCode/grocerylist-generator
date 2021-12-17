@@ -5,7 +5,7 @@ import se.iths.grocerylistgenerator.dto.StoreDto;
 import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.StoreMapper;
-import se.iths.grocerylistgenerator.model.Store;
+import se.iths.grocerylistgenerator.entity.Store;
 import se.iths.grocerylistgenerator.repository.StoreRepository;
 
 import java.util.List;

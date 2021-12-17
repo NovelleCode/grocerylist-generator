@@ -1,7 +1,5 @@
 package se.iths.grocerylistgenerator.dto;
 
-import se.iths.grocerylistgenerator.model.Category;
-
 public class IngredientDto {
 
     private Long id;

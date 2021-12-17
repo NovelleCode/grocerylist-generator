@@ -1,4 +1,4 @@
-package se.iths.grocerylistgenerator.model;
+package se.iths.grocerylistgenerator.entity;
 
 import javax.persistence.*;
 
