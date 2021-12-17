@@ -25,6 +25,13 @@ public class RecipeController {
         return new ResponseEntity<>(createdRecipe, HttpStatus.CREATED);
     }
 
+    @PostMapping("{recipeId}/ingredients/{ingredientIds}")
+    public ResponseEntity<RecipeDto> addIngredientsToRecipe(@PathVariable Long recipeId, @PathVariable List<Long> ingredientIds) {
+        RecipeDto recipe = recipeService.addIngredientsToRecipe(recipeId, ingredientIds);
+        return new ResponseEntity<>(recipe, HttpStatus.CREATED);
+
+    }
+
     @GetMapping()
     public ResponseEntity<List<RecipeDto>> findAllRecipes(){
         List<RecipeDto> allRecipes = recipeService.findAllRecipes();

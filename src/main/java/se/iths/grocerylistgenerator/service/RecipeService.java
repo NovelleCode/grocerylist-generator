@@ -6,20 +6,25 @@ import se.iths.grocerylistgenerator.dto.RecipeDto;
 import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.RecipeMapper;
+import se.iths.grocerylistgenerator.model.Ingredient;
 import se.iths.grocerylistgenerator.model.Recipe;
 import se.iths.grocerylistgenerator.repository.RecipeRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
+    private final IngredientService ingredientService;
     private final RecipeMapper recipeMapper;
 
-    public RecipeService(RecipeRepository recipeRepository, RecipeMapper recipeMapper) {
+    public RecipeService(RecipeRepository recipeRepository, IngredientService ingredientService, RecipeMapper recipeMapper) {
         this.recipeRepository = recipeRepository;
+        this.ingredientService = ingredientService;
         this.recipeMapper = recipeMapper;
     }
 
@@ -61,5 +66,12 @@ public class RecipeService {
 
     public List<RecipeDto> findRecipeByIngredient(List<Long> ingredientIds) {
         return recipeMapper.mapp(recipeRepository.findRecipesThatMatchIngredientIds(ingredientIds));
+    }
+
+    public RecipeDto addIngredientsToRecipe(Long recipeId, List<Long> ingredientIds) {
+        Recipe recipe = findById(recipeId);
+        Set<Ingredient> ingredients = ingredientIds.stream().map(ingredientService::findById).collect(Collectors.toSet());
+        recipe.setIngredients(ingredients);
+        return  recipeMapper.mapp(recipeRepository.save(recipe));
     }
 }
