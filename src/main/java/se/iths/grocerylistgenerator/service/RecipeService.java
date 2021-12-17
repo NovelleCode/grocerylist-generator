@@ -64,7 +64,7 @@ public class RecipeService {
         return recipeMapper.mapp(recipeRepository.findAll());
     }
 
-    public List<RecipeDto> findRecipeByIngredient(List<Long> ingredientIds) {
+    public Set<RecipeDto> findRecipeByIngredient(List<Long> ingredientIds) {
         return recipeMapper.mapp(recipeRepository.findRecipesThatMatchIngredientIds(ingredientIds));
     }
 
