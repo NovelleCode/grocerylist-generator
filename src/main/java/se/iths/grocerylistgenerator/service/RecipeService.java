@@ -1,6 +1,7 @@
 package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.grocerylistgenerator.dto.AddRecipeDto;
 import se.iths.grocerylistgenerator.dto.RecipeDto;
 import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
@@ -22,19 +23,19 @@ public class RecipeService {
         this.recipeMapper = recipeMapper;
     }
 
-    public RecipeDto createRecipe(RecipeDto recipeDto) {
+    public RecipeDto createRecipe(AddRecipeDto recipeDto) {
         isValidRecipeDto(recipeDto);
         checkRecipeNotInDatabase(recipeDto);
         return recipeMapper.mapp(recipeRepository.save(recipeMapper.mapp(recipeDto)));
     }
 
-    private void isValidRecipeDto(RecipeDto recipeDto) {
+    private void isValidRecipeDto(AddRecipeDto recipeDto) {
         if (recipeDto.getName() == null || recipeDto.getName().isEmpty()) {
             throw new BadRequestException("Invalid input, you must enter a name for the recipe!");
         }
     }
 
-    private void checkRecipeNotInDatabase(RecipeDto recipeDto) {
+    private void checkRecipeNotInDatabase(AddRecipeDto recipeDto) {
         Optional<Recipe> recipe = findRecipeByName(recipeDto.getName());
         if (recipe.isPresent()) {
             throw new BadRequestException("The recipe already exists in the database! Id: "

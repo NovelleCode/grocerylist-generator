@@ -24,6 +24,8 @@ public class IngredientMapper {
     }
 
     public IngredientDto mapp(Ingredient ingredient) {
+        if(ingredient == null)
+            return new IngredientDto();
         return new IngredientDto(ingredient.getId(), ingredient.getName(), categoryMapper.mapp(ingredient.getCategory()));
     }
 
@@ -35,7 +37,7 @@ public class IngredientMapper {
         return ingredients
                 .stream()
                 .map(this::mapp)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Set<IngredientDto> mapp(Set<Ingredient> ingredients) {
