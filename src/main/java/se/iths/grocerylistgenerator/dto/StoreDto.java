@@ -4,12 +4,12 @@ public class StoreDto {
 
     private Long id;
     private String name;
-    private StoreContactInfoDto storeContactInfoDto;
+    private ContactInfoDto contactInfoDto;
 
-    public StoreDto(Long id, String name, StoreContactInfoDto storeContactInfoDto) {
+    public StoreDto(Long id, String name, ContactInfoDto contactInfoDto) {
         this.id = id;
         this.name = name;
-        this.storeContactInfoDto = storeContactInfoDto;
+        this.contactInfoDto = contactInfoDto;
     }
 
     public StoreDto() {
@@ -32,11 +32,11 @@ public class StoreDto {
         this.name = name;
     }
 
-    public StoreContactInfoDto getStoreContactInfoDto() {
-        return storeContactInfoDto;
+    public ContactInfoDto getContactInfoDto() {
+        return contactInfoDto;
     }
 
-    public void setStoreContactInfoDto(StoreContactInfoDto storeContactInfoDto) {
-        this.storeContactInfoDto = storeContactInfoDto;
+    public void setContactInfoDto(ContactInfoDto contactInfoDto) {
+        this.contactInfoDto = contactInfoDto;
     }
 }

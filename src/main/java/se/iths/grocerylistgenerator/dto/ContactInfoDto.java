@@ -1,24 +1,24 @@
 package se.iths.grocerylistgenerator.dto;
 
-public class StoreContactInfoDto {
+public class ContactInfoDto {
 
     private Long id;
 
     private String address;
     private String phoneNumber;
 
-    public StoreContactInfoDto(Long id, String address, String phoneNumber) {
+    public ContactInfoDto(Long id, String address, String phoneNumber) {
         this.id = id;
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
 
-    public StoreContactInfoDto(String address, String phoneNumber) {
+    public ContactInfoDto(String address, String phoneNumber) {
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
 
-    public StoreContactInfoDto() {
+    public ContactInfoDto() {
     }
 
     public Long getId() {
