@@ -8,6 +8,7 @@ import se.iths.grocerylistgenerator.dto.RecipeDto;
 import se.iths.grocerylistgenerator.service.RecipeService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("recipes")
@@ -45,8 +46,8 @@ public class RecipeController {
     }
 
     @GetMapping("ingredients")
-    public ResponseEntity<List<RecipeDto>> findRecipesByIngredients(@RequestParam List<Long> ingredientIds){
-        List<RecipeDto> foundRecipe = recipeService.findRecipeByIngredient(ingredientIds);
+    public ResponseEntity<Set<RecipeDto>> findRecipesByIngredients(@RequestParam List<Long> ingredientIds){
+        Set<RecipeDto> foundRecipe = recipeService.findRecipeByIngredient(ingredientIds);
         return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
     }
 
