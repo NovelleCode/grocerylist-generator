@@ -6,10 +6,10 @@ import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.PersonMapper;
-import se.iths.grocerylistgenerator.model.Ingredient;
-import se.iths.grocerylistgenerator.model.Person;
-import se.iths.grocerylistgenerator.model.Recipe;
-import se.iths.grocerylistgenerator.model.Store;
+import se.iths.grocerylistgenerator.entity.Ingredient;
+import se.iths.grocerylistgenerator.entity.Person;
+import se.iths.grocerylistgenerator.entity.Recipe;
+import se.iths.grocerylistgenerator.entity.Store;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
 import java.util.List;

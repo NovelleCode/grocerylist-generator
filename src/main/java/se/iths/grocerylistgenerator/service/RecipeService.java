@@ -5,7 +5,7 @@ import se.iths.grocerylistgenerator.dto.RecipeDto;
 import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.mapper.RecipeMapper;
-import se.iths.grocerylistgenerator.model.Recipe;
+import se.iths.grocerylistgenerator.entity.Recipe;
 import se.iths.grocerylistgenerator.repository.RecipeRepository;
 
 import java.util.List;

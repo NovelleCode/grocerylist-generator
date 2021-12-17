@@ -2,7 +2,7 @@ package se.iths.grocerylistgenerator.mapper;
 
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.RecipeDto;
-import se.iths.grocerylistgenerator.model.Recipe;
+import se.iths.grocerylistgenerator.entity.Recipe;
 
 import java.util.List;
 import java.util.Optional;
