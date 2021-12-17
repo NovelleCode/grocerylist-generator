@@ -12,12 +12,12 @@ public class Store {
     private String name;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "store_storeinfo_id")
-    private StoreContactInfo storeContactInfo;
+    @JoinColumn(name = "contactinfo_id")
+    private ContactInfo contactInfo;
 
-    public Store(String name, StoreContactInfo storeContactInfo) {
+    public Store(String name, ContactInfo contactInfo) {
         this.name = name;
-        this.storeContactInfo = storeContactInfo;
+        this.contactInfo = contactInfo;
     }
 
     public Store(String name) {
@@ -43,11 +43,11 @@ public class Store {
         this.name = name;
     }
 
-    public StoreContactInfo getStoreContactInfo() {
-        return storeContactInfo;
+    public ContactInfo getContactInfo() {
+        return contactInfo;
     }
 
-    public void setStoreContactInfo(StoreContactInfo storeContactInfo) {
-        this.storeContactInfo = storeContactInfo;
+    public void setContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
     }
 }
