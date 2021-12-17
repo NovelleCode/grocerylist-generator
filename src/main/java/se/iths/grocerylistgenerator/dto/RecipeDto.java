@@ -1,7 +1,5 @@
 package se.iths.grocerylistgenerator.dto;
 
-import se.iths.grocerylistgenerator.model.Ingredient;
-
 import java.util.Set;
 
 public class RecipeDto {

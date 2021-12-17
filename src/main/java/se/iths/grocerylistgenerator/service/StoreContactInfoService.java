@@ -1,6 +1,7 @@
 package se.iths.grocerylistgenerator.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
 import se.iths.grocerylistgenerator.model.StoreContactInfo;
 import se.iths.grocerylistgenerator.repository.StoreContactInfoRepository;
 
@@ -21,8 +22,8 @@ public class StoreContactInfoService {
         return storeContactInfoRepository.save(storeContactInfo);
     }
 
-    public Optional<StoreContactInfo> findStoreContactInfoById(Long id) {
-        return storeContactInfoRepository.findById(id);
+    public StoreContactInfo findStoreContactInfoById(Long id) {
+        return storeContactInfoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Not found"));
     }
 
     public Iterable<StoreContactInfo> findAllStoresContactInfo() {
