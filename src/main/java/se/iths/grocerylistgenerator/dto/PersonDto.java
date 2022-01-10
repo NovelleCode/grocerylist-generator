@@ -25,6 +25,9 @@ public class PersonDto {
         this.recipes = recipes;
     }
 
+    public PersonDto() {
+    }
+
     public Long getId() {
         return id;
     }
