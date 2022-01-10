@@ -4,12 +4,12 @@ public class IngredientDto {
 
     private Long id;
     private String name;
-    private CategoryDto categoryDto;
+    private CategoryDto category;
 
     public IngredientDto(Long id, String name, CategoryDto categoryDto) {
         this.id = id;
         this.name = name;
-        this.categoryDto = categoryDto;
+        this.category = categoryDto;
     }
 
     public IngredientDto() {
@@ -31,11 +31,11 @@ public class IngredientDto {
         this.name = name;
     }
 
-    public CategoryDto getCategoryDto() {
-        return categoryDto;
+    public CategoryDto getCategory() {
+        return category;
     }
 
-    public void setCategoryDto(CategoryDto categoryDto) {
-        this.categoryDto = categoryDto;
+    public void setCategory(CategoryDto category) {
+        this.category = category;
     }
 }

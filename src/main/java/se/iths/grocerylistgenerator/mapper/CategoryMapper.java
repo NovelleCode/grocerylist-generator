@@ -19,6 +19,8 @@ public class CategoryMapper {
     }
 
     public CategoryDto mapp(Category category) {
+        if(category == null)
+            return new CategoryDto();
         return new CategoryDto(category.getId(), category.getName());
     }
 

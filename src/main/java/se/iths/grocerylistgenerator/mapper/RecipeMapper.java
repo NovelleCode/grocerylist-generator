@@ -1,6 +1,7 @@
 package se.iths.grocerylistgenerator.mapper;
 
 import org.springframework.stereotype.Service;
+import se.iths.grocerylistgenerator.dto.AddRecipeDto;
 import se.iths.grocerylistgenerator.dto.RecipeDto;
 import se.iths.grocerylistgenerator.entity.Recipe;
 
@@ -26,11 +27,15 @@ public class RecipeMapper {
         return new RecipeDto(recipe.getId(), recipe.getName(), ingredientMapper.mapp(recipe.getIngredients()));
     }
 
+    public Recipe mapp(AddRecipeDto addRecipeDto) {
+        return new Recipe(addRecipeDto.getName());
+    }
+
     public List<RecipeDto> mapp(List<Recipe> recipes) {
         return recipes
                 .stream()
                 .map(this::mapp)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Set<RecipeDto> mapp(Set<Recipe> ingredients) {

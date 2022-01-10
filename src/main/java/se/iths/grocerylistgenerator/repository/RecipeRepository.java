@@ -8,11 +8,12 @@ import se.iths.grocerylistgenerator.entity.Recipe;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     @Query("select r from Recipe r join r.ingredients i where i.id in :ingredientIds")
-    List<Recipe> findRecipesThatMatchIngredientIds(@Param("ingredientIds")List<Long> ingredientIds);
+    Set<Recipe> findRecipesThatMatchIngredientIds(@Param("ingredientIds")List<Long> ingredientIds);
 
     Optional<Recipe> findByName(String name);
 }
