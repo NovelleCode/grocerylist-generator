@@ -10,7 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import se.iths.grocerylistgenerator.jwt.JwtAuthenticationFilter;
+import se.iths.grocerylistgenerator.jwt.JwtAuthorizationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -37,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                .addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/signup/**", "/login/**").permitAll()
                 .antMatchers("/api/**").hasAuthority("ROLE_USER")

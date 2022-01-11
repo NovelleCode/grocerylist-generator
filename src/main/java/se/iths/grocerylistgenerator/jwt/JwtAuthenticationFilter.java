@@ -46,6 +46,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
         User user = (User) authentication.getPrincipal();
 
+        // TODO make secret key an environment variable
         Algorithm algorithm = Algorithm.HMAC256("secretkey".getBytes());
 
         String token = JWT.create()
