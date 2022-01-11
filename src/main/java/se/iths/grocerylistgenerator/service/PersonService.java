@@ -1,5 +1,10 @@
 package se.iths.grocerylistgenerator.service;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
@@ -12,11 +17,11 @@ import se.iths.grocerylistgenerator.entity.Recipe;
 import se.iths.grocerylistgenerator.entity.Store;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
-import java.util.List;
-import java.util.Optional;
+import javax.transaction.Transactional;
+import java.util.*;
 
 @Service
-public class PersonService {
+public class PersonService implements UserDetailsService {
 
     private final PersonRepository personRepository;
     private final RecipeService recipeService;
@@ -32,27 +37,16 @@ public class PersonService {
         this.personMapper = personMapper;
     }
 
-    public PersonDto createPerson(AddPersonDto addPersonDto) {
-        isValidAddPersonDto(addPersonDto);
-        checkUsernameNotTaken(addPersonDto);
-        return personMapper.mapp(personRepository.save(personMapper.mapp(addPersonDto)));
-    }
-
-    private void isValidAddPersonDto(AddPersonDto addPersonDto) {
-        if(addPersonDto.getUsername() == null || addPersonDto.getUsername().isEmpty()
-                || addPersonDto.getPassword() == null || addPersonDto.getPassword().isEmpty()) {
-            throw new BadRequestException("Invalid input in request body");
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Person> optionalPerson = personRepository.findByUsername(username);
+        if(optionalPerson.isEmpty()) {
+            throw new UsernameNotFoundException("User not found in the database");
         }
-    }
+        Person person = optionalPerson.get();
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(person.getRole().getRoleName());
 
-    private void checkUsernameNotTaken(AddPersonDto addPersonDto) {
-        if(findByUsername(addPersonDto.getUsername()).isPresent()){
-            throw new BadRequestException("Username already taken!");
-        }
-    }
-
-    private Optional<Person> findByUsername(String username) {
-        return personRepository.findByUsername(username);
+        return new User(username, person.getPassword(), Collections.singleton(authority));
     }
 
     public List<PersonDto> findAllPersons() {

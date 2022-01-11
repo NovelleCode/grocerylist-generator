@@ -3,26 +3,19 @@ package se.iths.grocerylistgenerator.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.service.PersonService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("persons")
+@RequestMapping("/api/persons")
 public class PersonController {
 
-    PersonService personService;
+    private final PersonService personService;
 
     public PersonController(PersonService personService) {
         this.personService = personService;
-    }
-
-    @PostMapping
-    public ResponseEntity<PersonDto> createPerson(@RequestBody AddPersonDto addPersonDto){
-        PersonDto createdPerson = personService.createPerson(addPersonDto);
-        return new ResponseEntity<>(createdPerson, HttpStatus.CREATED);
     }
 
     @GetMapping

@@ -10,7 +10,7 @@ import se.iths.grocerylistgenerator.service.IngredientService;
 import java.util.List;
 
 @RestController()
-@RequestMapping("ingredients")
+@RequestMapping("/api/ingredients")
 public class IngredientController {
 
     private final IngredientService ingredientService;

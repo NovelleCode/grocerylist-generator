@@ -9,7 +9,7 @@ import se.iths.grocerylistgenerator.service.CategoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("categories")
+@RequestMapping("/api/categories")
 public class CategoryController {
 
     public final CategoryService categoryService;

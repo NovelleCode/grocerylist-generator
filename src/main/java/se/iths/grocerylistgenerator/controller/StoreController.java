@@ -7,10 +7,9 @@ import se.iths.grocerylistgenerator.dto.StoreDto;
 import se.iths.grocerylistgenerator.service.StoreService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("stores")
+@RequestMapping("/api/stores")
 public class StoreController {
 
     private final StoreService storeService;
