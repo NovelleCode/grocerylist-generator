@@ -6,19 +6,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
-import se.iths.grocerylistgenerator.exception.BadRequestException;
-import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
-import se.iths.grocerylistgenerator.mapper.PersonMapper;
 import se.iths.grocerylistgenerator.entity.Ingredient;
 import se.iths.grocerylistgenerator.entity.Person;
 import se.iths.grocerylistgenerator.entity.Recipe;
 import se.iths.grocerylistgenerator.entity.Store;
+import se.iths.grocerylistgenerator.exception.EntityNotFoundException;
+import se.iths.grocerylistgenerator.mapper.PersonMapper;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
-import javax.transaction.Transactional;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService implements UserDetailsService {
