@@ -12,7 +12,7 @@ import java.util.UUID;
 @Component
 public class Sender {
 
-/*    JmsTemplate jmsTemplate;
+    JmsTemplate jmsTemplate;
 
     public Sender(JmsTemplate jmsTemplate){
         this.jmsTemplate = jmsTemplate;
@@ -25,6 +25,6 @@ public class Sender {
         Message message = new Message(UUID.randomUUID(), "Message from grocerylistGenerator!", LocalDateTime.now());
         jmsTemplate.convertAndSend(JmsConfig.PROJECT_QUEUE, message);
         System.out.println("Messagetext test sent!");
-    }*/
+    }
 
 }
