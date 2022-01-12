@@ -14,6 +14,7 @@ import se.iths.grocerylistgenerator.entity.Person;
 import se.iths.grocerylistgenerator.exception.BadRequestException;
 import se.iths.grocerylistgenerator.repository.PersonRepository;
 
+import java.util.List;
 import java.util.Objects;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -32,6 +33,7 @@ class GrocerylistGeneratorApplicationTests {
 
     @BeforeEach
     void setUp() {
+
         Person person1 = new Person("Kalle", "123");
         Person person2 = new Person("Mia", "456");
         Person person3 = new Person("Nisse", "789");
@@ -47,28 +49,26 @@ class GrocerylistGeneratorApplicationTests {
     }
 
     @Test
-    void testGetAllPersonsReturnsAllPersonsAndStatusOK() {
-        var getAllResult = testRestTemplate.getForEntity("http://localhost:" + port + "/persons", PersonDto[].class);
-        assertThat(getAllResult.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(getAllResult.getBody()).hasSize(3);
-    }
-
-    @Test
-    void testCreateNewPersonReturnsPersonDtoAndStatusCreated() {
+    void testSignupNewPersonReturnsPersonDtoAndStatusCreated() {
         AddPersonDto addPersonDto = new AddPersonDto("Anna", "147");
         var createPersonResult = testRestTemplate.
-                postForEntity("http://localhost:" + port + "/persons", addPersonDto, PersonDto.class);
+                postForEntity("http://localhost:" + port + "/signup", addPersonDto, PersonDto.class);
         assertThat(createPersonResult.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(Objects.requireNonNull(createPersonResult.getBody()).getUsername()).isEqualTo(addPersonDto.getUsername());
+
+        List<Person> all = personRepository.findAll();
+        assertThat(all.size()).isEqualTo(4);
+
     }
 
     @Test
-    void testCreateNewPersonReturnsBadRequest() {
+    void testSignupNewPersonWithExistingUsernameReturnsBadRequest() {
         AddPersonDto addPersonDto = new AddPersonDto("Kalle", "147");
-
         var result = testRestTemplate.
-                    postForEntity("http://localhost:" + port + "/persons", addPersonDto, BadRequestException.class);
-
+                postForEntity("http://localhost:" + port + "/signup", addPersonDto, BadRequestException.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
+
+        List<Person> all = personRepository.findAll();
+        assertThat(all.size()).isEqualTo(3);
     }
 }
