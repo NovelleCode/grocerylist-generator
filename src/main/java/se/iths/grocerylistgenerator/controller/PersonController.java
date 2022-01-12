@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.service.PersonService;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,51 +19,51 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<PersonDto>> findAllPersons(){
+    @GetMapping("/all")
+    public ResponseEntity<List<PersonDto>> findAllPersons() {
         List<PersonDto> allPersons = personService.findAllPersons();
         return new ResponseEntity<>(allPersons, HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<PersonDto> findPersonById(@PathVariable Long id){
-        PersonDto foundPerson = personService.findPersonById(id);
+    @GetMapping()
+    public ResponseEntity<PersonDto> findPersonByUsername(Principal principal) {
+        PersonDto foundPerson = personService.findPersonByUsername(principal.getName());
         return new ResponseEntity<>(foundPerson, HttpStatus.OK);
     }
 
-    @PostMapping("{personId}/grocerylist/recipes/{recipeId}")
-    public ResponseEntity<PersonDto> addRecipeIngredientsToGroceryList(@PathVariable Long personId, @PathVariable Long recipeId) {
-        PersonDto person = personService.addRecipeIngredientsToGroceryList(personId, recipeId);
+    @PostMapping("/grocerylist/recipes/{recipeId}")
+    public ResponseEntity<PersonDto> addRecipeIngredientsToGroceryList(Principal principal, @PathVariable Long recipeId) {
+        PersonDto person = personService.addRecipeIngredientsToGroceryList(principal.getName(), recipeId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @PostMapping("{personId}/grocerylist/ingredients/{ingredientId}")
-    public ResponseEntity<PersonDto> addIngredientToGroceryList(@PathVariable Long personId, @PathVariable Long ingredientId) {
-        PersonDto person = personService.addIngredientToGroceryList(personId, ingredientId);
+    @PostMapping("grocerylist/ingredients/{ingredientId}")
+    public ResponseEntity<PersonDto> addIngredientToGroceryList(Principal principal, @PathVariable Long ingredientId) {
+        PersonDto person = personService.addIngredientToGroceryList(principal.getName(), ingredientId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @PostMapping("{personId}/recipes/{recipeId}")
-    public ResponseEntity<PersonDto> addRecipeToRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
-        PersonDto person = personService.addRecipeToRecipeList(personId, recipeId);
+    @PostMapping("/recipes/{recipeId}")
+    public ResponseEntity<PersonDto> addRecipeToRecipeList(Principal principal, @PathVariable Long recipeId) {
+        PersonDto person = personService.addRecipeToRecipeList(principal.getName(), recipeId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @PostMapping("{personId}/stores/{storeId}")
-    public ResponseEntity<PersonDto> addFavouriteStore(@PathVariable Long personId, @PathVariable Long storeId) {
-        PersonDto person = personService.addFavouriteStore(personId, storeId);
+    @PostMapping("/stores/{storeId}")
+    public ResponseEntity<PersonDto> addFavouriteStore(Principal principal, @PathVariable Long storeId) {
+        PersonDto person = personService.addFavouriteStore(principal.getName(), storeId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @DeleteMapping("{personId}/grocerylist/ingredients/{ingredientId}")
-    public ResponseEntity<PersonDto> removeIngredientFromGroceryList(@PathVariable Long personId, @PathVariable Long ingredientId) {
-        PersonDto person = personService.removeIngredientFromGroceryList(personId, ingredientId);
+    @DeleteMapping("/grocerylist/ingredients/{ingredientId}")
+    public ResponseEntity<PersonDto> removeIngredientFromGroceryList(Principal principal, @PathVariable Long ingredientId) {
+        PersonDto person = personService.removeIngredientFromGroceryList(principal.getName(), ingredientId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 
-    @DeleteMapping("{personId}/recipes/{recipeId}")
-    public ResponseEntity<PersonDto> removeRecipeFromRecipeList(@PathVariable Long personId, @PathVariable Long recipeId) {
-        PersonDto person = personService.removeRecipeFromRecipeList(personId, recipeId);
+    @DeleteMapping("/recipes/{recipeId}")
+    public ResponseEntity<PersonDto> removeRecipeFromRecipeList(Principal principal, @PathVariable Long recipeId) {
+        PersonDto person = personService.removeRecipeFromRecipeList(principal.getName(), recipeId);
         return new ResponseEntity<>(person, HttpStatus.OK);
     }
 }
