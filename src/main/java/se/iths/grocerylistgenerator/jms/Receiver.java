@@ -8,9 +8,9 @@ import se.iths.grocerylistgenerator.entity.Message;
 
 @Component
 public class Receiver {
-/*    @JmsListener(destination = JmsConfig.PROJECT_QUEUE)
+    @JmsListener(destination = JmsConfig.PROJECT_QUEUE)
     public void listen(@Payload Message message){
         System.out.println("You got mail!");
         System.out.println(message);
-    }*/
+    }
 }
