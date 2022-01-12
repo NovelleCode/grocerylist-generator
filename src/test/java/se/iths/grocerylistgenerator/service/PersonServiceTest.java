@@ -38,31 +38,31 @@ class PersonServiceTest {
         personService = new PersonService(mockedPersonRepository,recipeService, ingredientService, storeService, personMapper);
     }
 
-    @Test
-    void createPersonWithCorrectInputCallsRepositoryWithCorrectArgument() {
-        AddPersonDto personDto = new AddPersonDto("Nisse", "123");
-        Person person = new Person("Nisse", "123");
-
-        when(personMapper.mapp(personDto)).thenReturn(person);
-        personService.createPerson(personDto);
-
-        ArgumentCaptor<Person> personArgumentCaptor = ArgumentCaptor.forClass(Person.class);
-        verify(mockedPersonRepository).save(personArgumentCaptor.capture());
-
-        Person capturedPerson = personArgumentCaptor.getValue();
-        assertThat(capturedPerson).isEqualTo(person);
-    }
-
-    @Test
-    void createPersonWithEmptyUsernameWillThrowException() {
-        AddPersonDto personDto = new AddPersonDto("", "123");
-
-        assertThatThrownBy(() -> personService.createPerson(personDto))
-                .isInstanceOf(BadRequestException.class)
-                .hasMessageContaining("Invalid input in request body");
-
-        verify(mockedPersonRepository, never()).save(any());
-    }
+//    @Test
+//    void createPersonWithCorrectInputCallsRepositoryWithCorrectArgument() {
+//        AddPersonDto personDto = new AddPersonDto("Nisse", "123");
+//        Person person = new Person("Nisse", "123");
+//
+//        when(personMapper.mapp(personDto)).thenReturn(person);
+//        personService.createPerson(personDto);
+//
+//        ArgumentCaptor<Person> personArgumentCaptor = ArgumentCaptor.forClass(Person.class);
+//        verify(mockedPersonRepository).save(personArgumentCaptor.capture());
+//
+//        Person capturedPerson = personArgumentCaptor.getValue();
+//        assertThat(capturedPerson).isEqualTo(person);
+//    }
+//
+//    @Test
+//    void createPersonWithEmptyUsernameWillThrowException() {
+//        AddPersonDto personDto = new AddPersonDto("", "123");
+//
+//        assertThatThrownBy(() -> personService.createPerson(personDto))
+//                .isInstanceOf(BadRequestException.class)
+//                .hasMessageContaining("Invalid input in request body");
+//
+//        verify(mockedPersonRepository, never()).save(any());
+//    }
 
     @Test
     void findAllPersonsCallsRepository() {
