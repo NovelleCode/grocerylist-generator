@@ -39,7 +39,7 @@ public class PersonService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Person> optionalPerson = personRepository.findByUsername(username);
-        if(optionalPerson.isEmpty()) {
+        if (optionalPerson.isEmpty()) {
             throw new UsernameNotFoundException("User not found in the database");
         }
         Person person = optionalPerson.get();
@@ -52,56 +52,56 @@ public class PersonService implements UserDetailsService {
         return personMapper.mapp(personRepository.findAll());
     }
 
-    public PersonDto findPersonById(Long id) {
-        return personMapper.mapp(findById(id));
+    public PersonDto findPersonByUsername(String username) {
+        return personMapper.mapp(findByUsername(username));
     }
 
-    private Person findById (Long id) {
-        return personRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Person with id: " + id + " not found"));
+    private Person findByUsername(String username) {
+        return personRepository.findByUsername(username).orElseThrow(() -> new EntityNotFoundException("Username not found, you have to sign up"));
     }
 
-    public PersonDto addRecipeIngredientsToGroceryList(Long personId, Long recipeId) {
-        Person person = findById(personId);
+    public PersonDto addRecipeIngredientsToGroceryList(String username, Long recipeId) {
+        Person person = findByUsername(username);
         Recipe recipe = recipeService.findById(recipeId);
         recipe.getIngredients().forEach(person::addIngredientToGroceryList);
         return personMapper.mapp(personRepository.save(person));
     }
 
-    public PersonDto addIngredientToGroceryList(Long personId, Long ingredientId) {
-        Person person = findById(personId);
+    public PersonDto addIngredientToGroceryList(String username, Long ingredientId) {
+        Person person = findByUsername(username);
         Ingredient ingredient = ingredientService.findById(ingredientId);
         person.addIngredientToGroceryList(ingredient);
         return personMapper.mapp(personRepository.save(person));
     }
 
-    public PersonDto addFavouriteStore(Long personId, Long storeId) {
-        Person person = findById(personId);
+    public PersonDto addFavouriteStore(String username, Long storeId) {
+        Person person = findByUsername(username);
         Store store = storeService.findById(storeId);
         person.setFavouriteStore(store);
         return personMapper.mapp(personRepository.save(person));
     }
 
-    public PersonDto addRecipeToRecipeList(Long personId, Long recipeId) {
-        Person person = findById(personId);
+    public PersonDto addRecipeToRecipeList(String username, Long recipeId) {
+        Person person = findByUsername(username);
         Recipe recipe = recipeService.findById(recipeId);
         person.addRecipeToRecipeList(recipe);
         return personMapper.mapp(personRepository.save(person));
     }
 
-    public PersonDto removeIngredientFromGroceryList(Long personId, Long ingredientId) {
-        Person person = findById(personId);
+    public PersonDto removeIngredientFromGroceryList(String username, Long ingredientId) {
+        Person person = findByUsername(username);
         Ingredient ingredient = ingredientService.findById(ingredientId);
-        if(person.getGroceries().contains(ingredient)){
+        if (person.getGroceries().contains(ingredient)) {
             person.removeIngredientFromGroceryList(ingredient);
             return personMapper.mapp(personRepository.save(person));
         }
         throw new EntityNotFoundException("Ingredient with id: " + ingredientId + " not found and therefore not deleted.");
     }
 
-    public PersonDto removeRecipeFromRecipeList(Long personId, Long recipeId) {
-        Person person = findById(personId);
+    public PersonDto removeRecipeFromRecipeList(String username, Long recipeId) {
+        Person person = findByUsername(username);
         Recipe recipe = recipeService.findById(recipeId);
-        if(person.getRecipes().contains(recipe)){
+        if (person.getRecipes().contains(recipe)) {
             person.removeRecipeFromRecipeList(recipe);
             return personMapper.mapp(personRepository.save(person));
         }
