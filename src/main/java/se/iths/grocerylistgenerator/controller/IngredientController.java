@@ -21,6 +21,7 @@ public class IngredientController {
         this.ingredientService = ingredientService;
     }
 
+
     @PostMapping
     public ResponseEntity<IngredientDto> createIngredient(@RequestBody AddIngredientDto addIngredientDto) {
         return new ResponseEntity<>(ingredientService.createIngredient(addIngredientDto), HttpStatus.CREATED);

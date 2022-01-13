@@ -2,6 +2,7 @@ package se.iths.grocerylistgenerator.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.service.PersonService;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/persons")
+@PreAuthorize("hasRole('ROLE_USER')")
 public class PersonController {
 
     private final PersonService personService;
@@ -19,6 +21,7 @@ public class PersonController {
         this.personService = personService;
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<List<PersonDto>> findAllPersons() {
         List<PersonDto> allPersons = personService.findAllPersons();
