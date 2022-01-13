@@ -1,5 +1,7 @@
 package se.iths.grocerylistgenerator.repository;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -15,16 +17,28 @@ class PersonRepositoryTest {
     @Autowired
     private PersonRepository testPersonRepository;
 
+    private Person testPerson;
 
+    @BeforeEach
+    void setUp() {
+        testPerson = new Person("Kalle", "123");
+        testPersonRepository.save(testPerson);
+    }
+
+    @AfterEach
+    void tearDown() {
+        testPersonRepository.deleteAll();
+    }
 
     @Test
-    void findByUsername() {
+    void findByUsernameReturnsPerson() {
+        Optional<Person> result = testPersonRepository.findByUsername("Kalle");
+        assertThat(result).contains(testPerson);
+    }
 
-        Person person = new Person("Kalle", "123");
-        testPersonRepository.save(person);
-
-        Optional<Person> result = testPersonRepository.findByUsername("Helena");
-
-        assertThat(result).contains(person);
+    @Test
+    void findByUsernameReturnsEmpty() {
+        Optional<Person> result = testPersonRepository.findByUsername("Musse");
+        assertThat(result).isEmpty();
     }
 }
