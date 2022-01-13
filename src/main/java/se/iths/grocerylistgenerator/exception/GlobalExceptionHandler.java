@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.nio.file.AccessDeniedException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -18,7 +20,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());
-
     }
 
     @Override
@@ -29,28 +30,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, errorMessage, ex));
     }
 
- /*   @Override
-    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported (
-            HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
-        logger.info(ex.getClass().getName());
-        StringBuilder builder = new StringBuilder();
-        builder.append(ex.getMethod());
-        builder.append("methid is not supported for this request. Supported methods are ");
-        Objects.requireNonNull(ex.getSupportedHttpMethods()).forEach(t-> builder.append(t + " "));
-        return buildResponseEntity(new ApiError(HttpStatus.METHOD_NOT_ALLOWED, builder.toString(), ex));
-    }*/
 
-    @ExceptionHandler({Exception.class})
-    public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
-        logger.info(ex.getClass().getName());
-        logger.error("Error: ", ex);
-        String errorMessage = "An unexected error occured.";
-
-        return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, errorMessage, ex));
-    }
+//    @ExceptionHandler({Exception.class})
+//    public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
+//        logger.info(ex.getClass().getName());
+//        logger.error("Error: ", ex);
+//        String errorMessage = "An unexpected error occured.";
+//
+//        return buildResponseEntity(new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, errorMessage, ex));
+//    }
 
 
-    // Custom ex
     @ExceptionHandler({EntityNotFoundException.class})
     public ResponseEntity<Object> entityNotFoundException(EntityNotFoundException ex){
         logger.info(ex.getClass().getName());
@@ -60,7 +50,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
-    @ExceptionHandler({UnauthorizedException.class})
+    @ExceptionHandler({UnauthorizedException.class, AccessDeniedException.class})
     public ResponseEntity<Object> unauthorizedException(UnauthorizedException ex){
         logger.info(ex.getClass().getName());
         String errorMessage = "You are unauthorized!";

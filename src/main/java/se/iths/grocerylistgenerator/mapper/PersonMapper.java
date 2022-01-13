@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.entity.Person;
+import se.iths.grocerylistgenerator.entity.Role;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,6 +24,11 @@ public class PersonMapper {
 
     public Person mapp(AddPersonDto addPersonDto) {
         return new Person(addPersonDto.getUsername(), addPersonDto.getPassword());
+    }
+
+    public Person mapp(AddPersonDto addPersonDto, Role role) {
+        // undvika att skapa en hel ny roll i databasen istället återavänd de som redan finns
+        return new Person(addPersonDto.getUsername(), addPersonDto.getPassword(), role);
     }
 
     public PersonDto mapp(Person person) {
