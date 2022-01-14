@@ -32,7 +32,7 @@ public class StoreController {
         return new ResponseEntity<>(foundStore, HttpStatus.OK);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping()
     public ResponseEntity<List<StoreDto>> findAllStores(){
         List<StoreDto> allStores = storeService.findAllStores();
