@@ -35,7 +35,7 @@ public class RecipeController {
 
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping()
     public ResponseEntity<List<RecipeDto>> findAllRecipes(){
         List<RecipeDto> allRecipes = recipeService.findAllRecipes();
@@ -48,6 +48,7 @@ public class RecipeController {
         return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("ingredients")
     public ResponseEntity<Set<RecipeDto>> findRecipesByIngredients(@RequestParam List<Long> ingredientIds){
         Set<RecipeDto> foundRecipe = recipeService.findRecipeByIngredient(ingredientIds);

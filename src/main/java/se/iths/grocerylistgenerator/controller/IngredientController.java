@@ -32,7 +32,7 @@ public class IngredientController {
         return new ResponseEntity<>(ingredientService.addCategoryToIngredient(ingredientId, categoryId), HttpStatus.CREATED);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping
     public ResponseEntity<List<IngredientDto>> getAllIngredients() {
         return new ResponseEntity<>(ingredientService.getAllIngredients(), HttpStatus.OK);

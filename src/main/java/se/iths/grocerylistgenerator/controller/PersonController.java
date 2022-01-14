@@ -21,7 +21,7 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<List<PersonDto>> findAllPersons() {
         List<PersonDto> allPersons = personService.findAllPersons();
