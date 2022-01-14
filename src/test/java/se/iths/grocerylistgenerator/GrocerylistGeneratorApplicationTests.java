@@ -59,7 +59,7 @@ class GrocerylistGeneratorApplicationTests {
     }
 
     @Test
-    void testSignupNewPersonReturnsPersonDtoAndStatusCreated() {
+    void testSignupNewPersonReturnsPersonDtoStatusCreatedAndPersonHasCorrectRole() {
         AddPersonDto addPersonDto = new AddPersonDto("Anna", "147");
         var createPersonResult = testRestTemplate.
                 postForEntity("http://localhost:" + port + "/signup", addPersonDto, PersonDto.class);
@@ -72,13 +72,17 @@ class GrocerylistGeneratorApplicationTests {
 
         Optional<Person> person = personRepository.findById(createPersonResult.getBody().getId());
         person.ifPresent(value -> assertThat(value.getRole().getRoleName()).isEqualTo("ROLE_USER"));
+    }
 
-        AddPersonDto addPersonDto2 = new AddPersonDto("Kalle", "147");
+    @Test
+    void testSignupNewPersonReturnsBadRequest() {
+
+        AddPersonDto addPersonDto = new AddPersonDto("Kalle", "147");
         var result = testRestTemplate.
-                postForEntity("http://localhost:" + port + "/signup", addPersonDto2, BadRequestException.class);
+                postForEntity("http://localhost:" + port + "/signup", addPersonDto, BadRequestException.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
 
         List<Person> all2 = personRepository.findAll();
-        assertThat(all2.size()).isEqualTo(4);
+        assertThat(all2.size()).isEqualTo(3);
     }
 }
