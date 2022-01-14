@@ -1,9 +1,9 @@
-package se.iths.grocerylistgenerator.model;
+package se.iths.grocerylistgenerator.entity;
 
 import javax.persistence.*;
 
 @Entity
-public class StoreContactInfo {
+public class ContactInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,12 +12,12 @@ public class StoreContactInfo {
     private String address;
     private String phoneNumber;
 
-    public StoreContactInfo(String address, String phoneNumber) {
+    public ContactInfo(String address, String phoneNumber) {
         this.address = address;
         this.phoneNumber = phoneNumber;
     }
 
-    public StoreContactInfo() {
+    public ContactInfo() {
     }
 
     public Long getId() {

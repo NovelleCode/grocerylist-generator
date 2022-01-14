@@ -2,7 +2,7 @@ package se.iths.grocerylistgenerator.mapper;
 
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.StoreDto;
-import se.iths.grocerylistgenerator.model.Store;
+import se.iths.grocerylistgenerator.entity.Store;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,18 +11,18 @@ import java.util.stream.Collectors;
 @Service
 public class StoreMapper {
 
-    StoreContactInfoMapper storeContactInfoMapper;
+    ContactInfoMapper contactInfoMapper;
 
-    public StoreMapper(StoreContactInfoMapper storeContactInfoMapper) {
-        this.storeContactInfoMapper = storeContactInfoMapper;
+    public StoreMapper(ContactInfoMapper contactInfoMapper) {
+        this.contactInfoMapper = contactInfoMapper;
     }
 
     public Store mapp(StoreDto storeDto) {
-        return new Store(storeDto.getName(), storeContactInfoMapper.mapp(storeDto.getStoreContactInfoDto()));
+        return new Store(storeDto.getName(), contactInfoMapper.mapp(storeDto.getContactInfoDto()));
     }
 
     public StoreDto mapp(Store store) {
-        return new StoreDto(store.getId(), store.getName(), storeContactInfoMapper.mapp(store.getStoreContactInfo()));
+        return new StoreDto(store.getId(), store.getName(), contactInfoMapper.mapp(store.getContactInfo()));
     }
 
     public List<StoreDto> mapp(List<Store> stores) {

@@ -1,4 +1,4 @@
-package se.iths.grocerylistgenerator.model;
+package se.iths.grocerylistgenerator.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -47,6 +47,12 @@ public class Person {
     public Person(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public Person(String username, String password, Role role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
     }
 
     public Person() {
@@ -122,5 +128,14 @@ public class Person {
 
     public void setFavouriteStore(Store favouriteStore) {
         this.favouriteStore = favouriteStore;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

@@ -3,10 +3,10 @@ package se.iths.grocerylistgenerator.mapper;
 import org.springframework.stereotype.Service;
 import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
-import se.iths.grocerylistgenerator.model.Person;
+import se.iths.grocerylistgenerator.entity.Person;
+import se.iths.grocerylistgenerator.entity.Role;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +24,11 @@ public class PersonMapper {
 
     public Person mapp(AddPersonDto addPersonDto) {
         return new Person(addPersonDto.getUsername(), addPersonDto.getPassword());
+    }
+
+    public Person mapp(AddPersonDto addPersonDto, Role role) {
+        // undvika att skapa en hel ny roll i databasen istället återavänd de som redan finns
+        return new Person(addPersonDto.getUsername(), addPersonDto.getPassword(), role);
     }
 
     public PersonDto mapp(Person person) {
@@ -44,9 +49,9 @@ public class PersonMapper {
                 .collect(Collectors.toList());
     }
 
-    public Optional<PersonDto> mapp(Optional<Person> optionalPerson) {
-        if (optionalPerson.isEmpty())
-            return Optional.empty();
-        return Optional.of(mapp(optionalPerson.get()));
-    }
+//    public Optional<PersonDto> mapp(Person optionalPerson) {
+//        if (optionalPerson.isEmpty())
+//            return Optional.empty();
+//        return Optional.of(mapp(optionalPerson.get()));
+//    }
 }
