@@ -3,10 +3,18 @@
 >
 <head>
     <title>Grocery Webapp</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
 </head>
 <body>
-<h1>Welcome to your Grocery List!</h1>
-<p>Click <a th:href="@{/application}">here</a> to continue to the app.</p>
-<p>Click <a th:href="@{/admin}">here</a> to continue to the admin console.</p>
+<div style="background-image: url('https://images.app.goo.gl/78Lj2Zcvy2QcbWPd8');"/>
+<!--<img src="../img/fruits.jpg" alt="fruits" width="128" height="128">-->
+<img src="../static/css/img/fruits.jpg" alt="fruits" th:src="@{/img/fruits.jpg}">
+
+<div class="container">
+    <div class="wrapper">
+        <h1>Welcome to your Grocery List!</h1>
+<p>Click <a th:href="@{/login}">here</a> to login.</p>
+    </div>
+</div>
 </body>
 </html>

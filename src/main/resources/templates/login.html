@@ -2,19 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
 >
 <head>
+    <meta charset="ISO-8859-1">
     <title>Grocery - Login</title>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet" />
+
 </head>
 <body>
-<div th:if="${param.error}">
-    Invalid username and password.
+
+
+<div class="container">
+    <div class="wrapper">
+        <div class="title"><span>Login Form</span></div>
+        <form th:action="@{/login}" method="post">
+            <div class="row"><label> Username:<input type="text" name="username"></label></div>
+            <div class="row"><label> Password:<input type="password" name="password"></label></div>
+            <div class="row button"><input type="submit" value="Login"></div>
+        </form>
+    </div>
 </div>
-<div th:if="${param.logout}">
-    You have been logged out.
-</div>
-<form th:action="@{/login}" method="post">
-    <div><label> Username : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+
 </body>
 </html>

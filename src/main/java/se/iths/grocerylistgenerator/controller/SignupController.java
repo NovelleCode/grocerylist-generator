@@ -2,10 +2,7 @@ package se.iths.grocerylistgenerator.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.dto.AddPersonDto;
 import se.iths.grocerylistgenerator.dto.PersonDto;
 import se.iths.grocerylistgenerator.service.SignupService;
@@ -26,4 +23,9 @@ public class SignupController {
         PersonDto createdPerson = signupService.createPerson(addPersonDto);
         return new ResponseEntity<>(createdPerson, HttpStatus.CREATED);
     }
+
+/*    @GetMapping
+    public String showRegistrationForm() {
+        return "registration";
+    }*/
 }
