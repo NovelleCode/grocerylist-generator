@@ -13,6 +13,27 @@ The idea is that the user can pick recipes in the application and the ingredient
 * Docker
 * JMS - Artemis
 
+## Installation
+
+### JMS configuration
+
+Prerequisite: you have docker installed on your machine.
+Start a docker container to use Artemis, run following command: 
+`docker container run --name artemis -p 8161:8161 -p 61616:61616 vromero/activemq-artemis`
+
+### Run from IntelliJ
+Clone this repository and open it in IntelliJ. Add the following command line variables before running the program:
+- `--JWTSECRETKEY=jwtsecrethere`
+- `--DATABASE_PSW=databasepasswordhere`  
+
+Run the program.
+
+### Run from terminal
+Go to the actions tab on the Github repository [here](https://github.com/Raggero/grocerylist-generator/actions).
+Click on the latest workflow, scroll down the page and download the package.zip.
+Extract the package.zip and browse to the folder where the jar file is located and run the following command: (make sure Java 17 is your first environment variable)
+`java -jar grocerylist-generator-0.0.1-SNAPSHOT.jar --JWTSECRETKEY=jwtsecrethere --DATABASE_PSW=databasepasswordhere`
+
 ## Endpoints
 ### Explanation of endpoints
 * Users that are allowed to access endpoint
