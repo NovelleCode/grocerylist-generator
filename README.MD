@@ -76,7 +76,7 @@ POST `localhost:8080/api/persons/grocerylist/recipes/{recipeId}`
 
 #### Add ingredient to your grocery list
 USER, ADMIN  
-POST `localhost:8080/api/persons/grocerylist/ingredients/{ingredientId}/{recipeId}`
+POST `localhost:8080/api/persons/grocerylist/ingredients/{ingredientId}`
 
 #### Add recipe to your recipe list
 USER, ADMIN  
