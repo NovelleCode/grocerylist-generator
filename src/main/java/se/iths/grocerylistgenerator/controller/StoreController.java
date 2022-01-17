@@ -2,15 +2,16 @@ package se.iths.grocerylistgenerator.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.dto.StoreDto;
 import se.iths.grocerylistgenerator.service.StoreService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("stores")
+@RequestMapping("/api/stores")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class StoreController {
 
     private final StoreService storeService;
@@ -31,6 +32,7 @@ public class StoreController {
         return new ResponseEntity<>(foundStore, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping()
     public ResponseEntity<List<StoreDto>> findAllStores(){
         List<StoreDto> allStores = storeService.findAllStores();

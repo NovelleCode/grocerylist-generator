@@ -2,6 +2,7 @@ package se.iths.grocerylistgenerator.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import se.iths.grocerylistgenerator.dto.AddRecipeDto;
 import se.iths.grocerylistgenerator.dto.RecipeDto;
@@ -11,7 +12,8 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("recipes")
+@RequestMapping("/api/recipes")
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -33,6 +35,7 @@ public class RecipeController {
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping()
     public ResponseEntity<List<RecipeDto>> findAllRecipes(){
         List<RecipeDto> allRecipes = recipeService.findAllRecipes();
@@ -45,6 +48,7 @@ public class RecipeController {
         return new ResponseEntity<>(foundRecipe, HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("ingredients")
     public ResponseEntity<Set<RecipeDto>> findRecipesByIngredients(@RequestParam List<Long> ingredientIds){
         Set<RecipeDto> foundRecipe = recipeService.findRecipeByIngredient(ingredientIds);
