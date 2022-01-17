@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
@@ -20,6 +22,7 @@ public class SimpleAccessDeniedHandler implements AccessDeniedHandler {
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         HashMap<String, String> map = new HashMap<>(2);
         map.put("status", UNAUTHORIZED.toString());
+        map.put("timestamp", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         map.put("uri", request.getRequestURI());
         map.put("message", "Access denied");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
