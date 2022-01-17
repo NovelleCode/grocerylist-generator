@@ -142,6 +142,51 @@ GET `http://localhost:8080/api/categories`
 ADMIN  
 GET `http://localhost:8080/api/categories/{categoryId}`
 
+### Recipe
+#### Create new recipe
+ADMIN   
+POST `http://localhost:8080/api/recipes`   
+Request body
+```json
+{
+  "name": "falafel"
+}
+``` 
+#### Get all recipes 
+ADMIN,USER   
+GET `http://localhost:8080/api/recipes`
 
+#### Find recipe by id
+ADMIN   
+GET ` http://localhost:8080/api/recipes/{id} `
 
+#### Add ingredient to recipe
+ADMIN   
+POST` http://localhost:8080/api/recipes/{recipeID}/ingredients/{ingredientID} ` 
+
+#### FInd recipe by ingredient
+ADMIN, USER   
+GET ` http://localhost:8080/api/recipes/ingredients?ingredientIds={ingredientID} `
+
+### Store
+#### Create new store
+ADMIN   
+POST `http://localhost:8080/api/stores`   
+Request body
+```json
+{
+  "name": "TestStore",
+  "contactInfoDto": {
+    "address": "storeAddress",
+    "phoneNumber": "storePhonenumber"
+  }
+}
+``` 
+#### Get all stores
+ADMIN, USER   
+GET ` http://localhost:8080/api/stores `
+
+#### Find store by id
+ADMIN   
+GET ` http://localhost:8080/api/stores/{id} `
 
